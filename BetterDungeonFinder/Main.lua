@@ -27,6 +27,8 @@ BAF.XML_Default = {
   BGSound = true,
   BGSoundC = false,
   AlertSound = 14,
+  AlphaLow = 0.2,
+  AlphaHigh = 0.9,
   
   BDSort = {},
   DDSort = {},

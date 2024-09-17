@@ -37,7 +37,7 @@ function BAF.D2C(Control, List)
   if List["IsRich"] then Gear:SetColor(0.698, 0.4, 1) else Gear:SetColor(1, 1, 1) end
   --Background
   BG:SetTexture("/BetterDungeonFinder/src/pic/BG_"..List["nId"]..".dds")
-  BG:SetAlpha(BAF.AlphaLow)
+  BG:SetAlpha(BAF.savedVariables.AlphaLow)
   --Icon
   if List["SK"] then SK:SetAlpha(1) else SK:SetAlpha(0.3) end
   if List["HM"] == 1 then HM:SetAlpha(1) else HM:SetAlpha(0.3) end
@@ -179,18 +179,18 @@ function BAF.CheckButton(Control, List)
   local Norm = Control:GetNamedChild("_N")
   local Vera = Control:GetNamedChild("_V")
   local BG = Control:GetNamedChild("_BG")
-  BG:SetAlpha(BAF.AlphaLow)
+  BG:SetAlpha(BAF.savedVariables.AlphaLow)
   if List == nil then return end
   
   if Norm:GetState() == 1 then
-    BG:SetAlpha(BAF.AlphaHigh)
+    BG:SetAlpha(BAF.savedVariables.AlphaHigh)
     if not IsInTable(List["nId"], BAF.SD) then -- avoid repeat adding
       table.insert(BAF.SD, List["nId"])
     end
   end
   
   if Vera:GetState() == 1 then
-    BG:SetAlpha(BAF.AlphaHigh)
+    BG:SetAlpha(BAF.savedVariables.AlphaHigh)
     if not IsInTable(List["vId"], BAF.SD) then -- avoid repeat adding
       table.insert(BAF.SD, List["vId"])
     end

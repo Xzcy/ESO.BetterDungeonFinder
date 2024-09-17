@@ -21,6 +21,7 @@ function BAF.OnSalePack()
   end
 end
 --Just for debug
+--/script BetterDungonFinder.PackScan("Arms Pack")
 function BAF.PackScan(String)
   for i = 0, 60000 do
     local Name = GetMarketProductDisplayName(i)
@@ -28,14 +29,80 @@ function BAF.PackScan(String)
   end
 end
 --------------------------------
-BAF.TodayUndaunted = {} --Today undaunted dungeons
---Today Undaunted dungeons
-function BAF.OnDailyU() --Based on Undaunted Daily
+--Today undaunted dungeons
+BAF.TodayUndaunted = {} 
+--/script BetterDungonFinder.OnDailyU()
+function BAF.OnDailyU(Stamp)
   BAF.TodayUndaunted = {}
-  if UndauntedDaily == nil then return end
-  table.insert(BAF.TodayUndaunted, UndauntedDaily.GetPledgeDungeons()[1]:GetNormalId())
-  table.insert(BAF.TodayUndaunted, UndauntedDaily.GetPledgeDungeons()[2]:GetNormalId())
-  table.insert(BAF.TodayUndaunted, UndauntedDaily.GetPledgeDungeons()[3]:GetNormalId())
+  local Cycle_1 = {
+    2,    -- Fungal Grotto I
+    300,  -- The Banished Cells II
+    5,    -- Darkshade Caverns I
+    303,  -- Elden Hollow II
+    6,    -- Wayrest Sewers I
+    316,  -- Spindleclutch II
+    4,    -- The Banished Cells I
+    18,   -- Fungal Grotto II
+    3,    -- Spindleclutch I
+    308,  -- Darkshade Caverns II
+    7,    -- Elden Hollow I
+    22,   -- Wayrest Sewers II
+  }
+  local Cycle_2 = {
+    16,   -- Selene's Web
+    322,  -- City of Ash II
+    9,    -- Crypt of Hearts I
+    12,   -- Volenfell
+    14,   -- Blessed Crucible
+    11,   -- Direfrost Keep
+    17,   -- Vaults of Madness
+    317,  -- Crypt of Hearts II
+    10,   -- City of Ash I
+    13,   -- Tempest Island
+    15,   -- Blackheart Haven
+    8,    -- Arx Corinium
+  }
+  
+  --2024.09.17 UTC 13:24
+  local StartTime, StartIndex = 1726579413, {12, 12, 4} 
+  local Cycle_3 = {
+    289, 293, -- Imperial City Prison, Ruins of Mazzatun
+    288, 295, -- White-Gold Tower, Cradle of Shadows
+    324, 368, -- Bloodroot Forge, Falkreath Hold
+    420, 418, -- Fang Lair, Scalecaller Peak
+    426, 428, -- Moon Hunter Keep, March of Sacrifices
+    435, 433, -- Depths of Malatar, Frostvault
+    494, 496, -- Moongrave Fane, Lair of Maarselok
+    503, 505, -- Icereach, Unhallowed Grave
+    507, 509, -- Stone Garden, Castle Thorn
+    591, 593, -- Black Drake Villa, The Cauldron
+    595, 597, -- Red Petal Bastion, The Dread Cellar
+    599, 601, -- Coral Aerie, Shipwright's Regret
+    608, 610, -- Earthen Root Enclave, Graven Deep
+    613, 615, -- Bal Sunnar, Scrivener's Hall
+    638, 640, -- Oathsworn Pit, Bedlam Veil
+  }
+  
+  local NextUpdateTime = Stamp or (GetTimeStamp() + GetTimeUntilNextDailyLoginRewardClaimS())
+  local Days = math.floor((NextUpdateTime - StartTime) / (24 * 3600))
+  local Index = function(Number, Table)
+    local Tep = Number % (#Table)
+    if Tep == 0 then
+      return Table[#Table]
+    else
+      return Table[Tep]
+    end
+  end
+
+  table.insert(BAF.TodayUndaunted, Index((StartIndex[1] + Days), Cycle_1))
+  table.insert(BAF.TodayUndaunted, Index((StartIndex[2] + Days), Cycle_2))
+  table.insert(BAF.TodayUndaunted, Index((StartIndex[3] + Days), Cycle_3))
+  
+  if Stamp then
+    for i = 1, 3 do
+      d(GetActivityName(BAF.TodayUndaunted[i]))
+    end
+  end
 end
 --------------------------------
 --Fill the dungeonList with info

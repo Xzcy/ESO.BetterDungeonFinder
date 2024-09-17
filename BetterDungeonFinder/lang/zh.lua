@@ -27,10 +27,6 @@ BAFFontSize = MyFont
 
 BAFFontSize = ""
 
---The alpha degree of dungeon BG when choosen or not
-BAF.AlphaLow = 0.2
-BAF.AlphaHigh = 0.9
-
 --String Used in addon.
 BAFLang_SI = {
   FirstTime = "[BetterDungeonFinder] 检测到初次加载\r\n- 通过回车键唤出鼠标拖动|t30:30:esoui/art/lfg/lfg_indexicon_dungeon_up.dds|t图标\r\n- 推荐在控制中为BDF添加快捷键\r\n- 更多选项请查看BDF插件设置界面",
@@ -62,6 +58,9 @@ BAFLang_SI = {
   SETTING_Finder_Title = "地下城名称左侧对齐显示",
   SETTING_Finder_Title_Info = "默认为居中显示",
   SETTING_Finder_TitleV = "地下城名称显示位置微调",
+  SETTING_Finder_Alpha_Low = "地下城背景图透明度（未选时）",
+  SETTING_Finder_Alpha_High = "地下城背景图透明度（选择时）",
+  SETTING_Finder_Alpha_Tooltip = "关闭 - 0 ~ 1 - 不透明",
   
   SETTING_Trigger_Header = "排本按钮",
   SETTING_Trigger_Lock = "锁定排本按钮",

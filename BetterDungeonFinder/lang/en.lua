@@ -27,10 +27,6 @@ BAFFontSize = MyFont
 
 BAFFontSize = ""
 
---The alpha degree of dungeon BG when choosen or not
-BAF.AlphaLow = 0.2
-BAF.AlphaHigh = 0.9
-
 --String Used in addon.
 BAFLang_SI = {
   FirstTime = "[BetterDungeonFinder] First Time Loading\r\n- Use the Enter key to call up the mouse to drag |t30:30:esoui/art/lfg/lfg_indexicon_dungeon_up.dds|t\r\n- Set a shortcut key for BDF in Control (Optional)\r\n- Check out the setting menu for more BDF options",
@@ -62,6 +58,9 @@ BAFLang_SI = {
   SETTING_Finder_Title = "Left Aligned Dungeon Titles",
   SETTING_Finder_Title_Info = "Defaults to centered display",
   SETTING_Finder_TitleV = "Position Adjustment for Dungeon Titles",
+  SETTING_Finder_Alpha_Low = "Dungeon Image Opacity (unselected)",
+  SETTING_Finder_Alpha_High = "Dungeon Image Opacity (selected)",
+  SETTING_Finder_Alpha_Tooltip = "No - 0 ~ 1 - Full",
   
   SETTING_Trigger_Header = "Triggle Button",
   SETTING_Trigger_Lock = "Lock Triggle Button",

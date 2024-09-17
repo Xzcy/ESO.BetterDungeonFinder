@@ -5,7 +5,7 @@ local BAF = BetterDungonFinder
 BAF.name = "BetterDungeonFinder"
 BAF.title = "BetterDungeonFinder"
 BAF.author = "@MelanAster"
-BAF.version = "1.42"
+BAF.version = "1.43"
 
 --1, Normal activityId; 2, Vertern activityId; 3, Zone Id; 4, SetsId Table;
 --5, HM AchievementId; 6, SR AchievementId; 7, ND AchievementId; 8, Tri AchievementID;
@@ -63,7 +63,7 @@ BAF.DLCDungeonInfo = {
   [24] = {601, 602, 1302, {624, 633, 622, 623}, 3154, 3117, 3118, 3120, 6742, 6743, 10943, 3228}, -- Shipwright's Regret
   [25] = {608, 609, 1360, {660, 661, 662, 666}, 3377, 3378, 3379, 3381, 6835, 6836, 11824, 3422}, -- Earthen Root Enclave
   [26] = {610, 611, 1361, {664, 665, 667, 663}, 3396, 3397, 3398, 3400, 6837, 6838, 11830, 3423}, -- Graven Deep
-  [27] = {613, 614, 1389, {680, 681, 682, 683}, 3470, 3471, 3472, 3474, 6896, 6897, nil,   3547}, -- Bal Sunnar
+  [27] = {613, 614, 1389, {680, 681, 682, 683}, 3470, 3471, 3472, 3474, 6896, 6897, 14546, 3547}, -- Bal Sunnar
   [28] = {615, 616, 1390, {684, 685, 686, 687}, 3531, 3532, 3533, 3535, 7027, 7028, nil,   3546}, -- Scrivener's Hall
   [29] = {638, 639, 1470, {732, 734, 730, 731}, 3812, 3813, 3814, 3816, 7105, 7106, nil,   3921}, -- Oathsworn Pit
   [30] = {640, 641, 1471, {736, 737, 738, 735}, 3853, 3854, 3855, 3857, 7155, 7156, 13229, 3922}, -- Bedlam Veil
