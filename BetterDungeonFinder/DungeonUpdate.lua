@@ -138,17 +138,20 @@ function BAF.DungeonUpdate()
 	end
 end
 
---Check the available of dungeon by level
+--Check the available of dungeon by level and dlc
 function BAF.DungeonCheck(nID, vID)
+-- 0, none; 1, n; 2, n + v
+-- DLC Check
+  local RequiredDLC = GetRequiredActivityCollectibleId(nID)
+  if RequiredDLC ~= 0 then
+    if IsESOPlusSubscriber() or IsCollectibleOwnedByDefId(RequiredDLC) then else return 0 end
+  end
+-- Level Check
 	local nAvailability = DoesPlayerMeetActivityLevelRequirements(nID)
 	local vAvailability = DoesPlayerMeetActivityLevelRequirements(vID)
--- -1, none; 0, n; 1, n + v
-  if nAvailability == false then
-    return 0
-  end
-  if vAvailability == false then
-    return 1
-  end
+  if nAvailability == false then return 0 end
+  if vAvailability == false then return 1 end
+-- Both Available
   return 2
 end
 

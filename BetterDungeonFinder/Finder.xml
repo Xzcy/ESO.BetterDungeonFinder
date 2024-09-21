@@ -128,6 +128,8 @@
           <Anchor point="TOPLEFT" relativeTo="$(parent)" relativePoint="CENTER" offsetX="600" offsetY="360"/>
           <OnInitialized>self:SetText(BAFLang_SI.BUTTON_Queue_Status_Queue)</OnInitialized>
           <OnClicked> BetterDungonFinder.Queue() </OnClicked>
+          <OnMouseEnter> BetterDungonFinder.DungeonSelectedInfo(self) </OnMouseEnter>
+          <OnMouseExit> ClearTooltip(InformationTooltip) </OnMouseExit>
         </Button>
         <Label name="BAFWindow_CD" font="BAFWinH3" inheritAlpha="true" color="FFFFFF" wrapMode="TRUNCATE" verticalAlignment="TOP" horizontalAlignment="CENTER" text="/" hidden="true">
           <Anchor point="CENTER" relativeTo="BAFWindow_Queue" relativePoint="CENTER" offsetX="0" offsetY="0"/>

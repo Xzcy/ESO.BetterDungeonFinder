@@ -241,3 +241,34 @@ function BAF.DailyInfo(Control, Type)
   end
   SetTooltipText(InformationTooltip, String)
 end
+
+--InfoTooltip for Queue
+function BAF.DungeonSelectedInfo(Control)
+  --No Selected Dungeons
+  if not BAF.SD[1] then return end
+  InitializeTooltip(InformationTooltip, Control, BOTTOM, 0, 0, TOP)
+  local String = "\r\n  "
+  local Checked = function(ID)
+    for key, ActivityId in ipairs(BAF.SD) do
+      if ActivityId == ID then return true end
+    end
+    return false
+  end
+  for i = 1, #BAF.BaseDungeonInfo do
+    if Checked(BAF.BaseDungeonInfo[i][1]) then
+      String = String..GetActivityName(BAF.BaseDungeonInfo[i][1]).."\r\n  "
+    end
+    if Checked(BAF.BaseDungeonInfo[i][2]) then
+      String = String..GetActivityName(BAF.BaseDungeonInfo[i][2]).."  ("..GetString(SI_DUNGEONDIFFICULTY2)..")\r\n  "
+    end
+  end
+  for i = 1, #BAF.DLCDungeonInfo do
+    if Checked(BAF.DLCDungeonInfo[i][1]) then
+      String = String..GetActivityName(BAF.DLCDungeonInfo[i][1]).."\r\n  "
+    end
+    if Checked(BAF.DLCDungeonInfo[i][2]) then
+      String = String..GetActivityName(BAF.DLCDungeonInfo[i][2]).."  ("..GetString(SI_DUNGEONDIFFICULTY2)..")\r\n  "
+    end
+  end
+  SetTooltipText(InformationTooltip, String)
+end
