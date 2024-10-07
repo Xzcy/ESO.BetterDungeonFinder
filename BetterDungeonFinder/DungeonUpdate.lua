@@ -13,10 +13,12 @@ BAF.OnSale = {}
 --Get Onsale weapon pack
 function BAF.OnSalePack()
   BAF.OnSale = {}
-  for a = 1, 20 do
-    for c = 1, 10 do
-      local ID = GetMarketProductPresentationIds(MARKET_DISPLAY_GROUP_CROWN_STORE, a, 3, c)
-      if ID ~= 0 then table.insert(BAF.OnSale, ID) end
+  for a = 1, 30 do
+    for b = 1, 30 do
+      for c = 1, 30 do
+        local ID = GetMarketProductPresentationIds(MARKET_DISPLAY_GROUP_CROWN_STORE, a, b, c)
+        if ID ~= 0 then table.insert(BAF.OnSale, ID) end
+      end
     end
   end
 end
