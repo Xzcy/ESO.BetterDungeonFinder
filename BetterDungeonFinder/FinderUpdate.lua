@@ -8,6 +8,7 @@ local function IsInTable(value, tbl)
   end
   return false
 end
+
 --------------------
 --Set everything in UI
 function BAF.D2C(Control, List)
@@ -81,7 +82,9 @@ function BAF.WindowUpdate()
   BAF.RoleRefresh()
   BAF.RewardRefresh()
   BAF.CDRefresh()
+  BAF.SavedRefresh()
 end
+
 --Refresh the daily reward
 function BAF.RewardRefresh()
   if IsActivityEligibleForDailyReward(LFG_ACTIVITY_DUNGEON) then
@@ -100,6 +103,7 @@ function BAF.RewardRefresh()
     BAFRan_BG:SetAlpha(0.2)
   end
 end
+
 --Refresh the current role in controls showing
 function BAF.RoleRefresh()
   local Role = GetSelectedLFGRole() -- dd:1 H:4 T:2
@@ -111,6 +115,7 @@ function BAF.RoleRefresh()
   if Role == 2 then BAFRole_T:SetState(BSTATE_PRESSED) return end
   d("BDF: Something Wrong with Role Change.")
 end
+
 --Refresh the cooldown of queue
 function BAF.CDRefresh()
   --Dungeon
@@ -140,6 +145,33 @@ function BAF.CDRefresh()
     BAFWindow_CD2:SetHidden(true)
   end
 end
+
+--Saved Bar
+local SBControls = {}
+function BAF.SavedRefresh()
+  --Reset
+  for i = 1, #SBControls do
+    SBControls[i].BAFIndex = nil
+    SBControls[i]:SetHidden(true)
+  end
+  --Fill with Info
+  local List = BAF.savedVariables.SavedList
+  for i = 1, #List do
+    if not SBControls[i] then
+      local TopLevel = WINDOW_MANAGER:GetControlByName("BAFTopLevel")
+      SBControls[i] = CreateControlFromVirtual(
+        "BAFSavedBar_"..i, 
+        TopLevel, 
+        "BAFSavedBar"
+      )
+      SBControls[i]:SetAnchor(BOTTOMLEFT, TopLevel, BOTTOMRIGHT, 5, (1 - i)*45)
+    end
+    SBControls[i]:SetHidden(false)
+    SBControls[i].BAFIndex = i
+    SBControls[i]:SetText("    "..List[i]["Name"])
+  end
+end
+
 --Undaunted dungeon info should be infused in right Control(1~3) and update
 function BAF.UndauntedWindowUpdate()
   for i = 1, 3 do
@@ -195,6 +227,25 @@ function BAF.CheckButton(Control, List)
       table.insert(BAF.SD, List["vId"])
     end
   end
+end
+
+--Press Buttons
+function BAF.PressButton(ActivityIDs)
+  local CheckList = {}
+  for i = 1, #ActivityIDs do
+    CheckList[ActivityIDs[i]] = true
+  end
+  --Base Dungeons
+  for i = 1, #BAF.BD do
+    if CheckList[BAF.BD[i]["nId"]] then BAF.BDC[i]:GetNamedChild("_N"):SetState(BSTATE_PRESSED) end
+    if CheckList[BAF.BD[i]["vId"]] then BAF.BDC[i]:GetNamedChild("_V"):SetState(BSTATE_PRESSED) end
+  end
+  --DLC Dungeons
+  for i = 1, #BAF.DD do
+    if CheckList[BAF.DD[i]["nId"]] then BAF.DDC[i]:GetNamedChild("_N"):SetState(BSTATE_PRESSED) end
+    if CheckList[BAF.DD[i]["vId"]] then BAF.DDC[i]:GetNamedChild("_V"):SetState(BSTATE_PRESSED) end
+  end
+  BAF.SelectDungeonUpdate()
 end
 
 --Select all the dungeon with sk left

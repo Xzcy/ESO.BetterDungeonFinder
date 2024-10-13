@@ -20,6 +20,7 @@ function BAF.WindowPositionSet()
     BAF.UDC[i]:SetAnchor(CENTER, TopLevel, CENTER, Left + 1240, Top + 60*i)
   end
 end
+
 --When the position of the window and button changes, recorded various position information.
 -- Point and relativePoint may change when control moved, so GetLEFT/TOP() not enough to reset control position.
 function BAF.WindowPosition()
@@ -135,12 +136,71 @@ function BAF.QueueStatus()
   BAFWindow_Queue:SetText(BAFLang_SI.BUTTON_Queue_Status_Queue) -- Other State（OK for queue）
 end
 
-local ActivitySet = {
-    ["50Solo"]  = {67, 97, 98, 99, 100, 101},
-    ["50Group"] = {1 , 92, 93, 94,  95,  96},
-    ["49Solo"]  = {68, 87, 88, 89,  90,  91},
-    ["49Group"] = {2 , 82, 83, 84,  85,  86},
+--Save List of Dungeons with Dialog
+local function AddSavedList(Title)
+  table.insert(BAF.savedVariables.SavedList, {["Name"] = Title, ["Dungeons"] = BAF.SD})
+end
+
+ZO_Dialogs_RegisterCustomDialog("BAF_SavedList", 
+  {
+    title = {
+      text = BAFLang_SI.DIALOG_TITLE,
+    },
+    mainText = {
+      text = BAFLang_SI.DIALOG_TEXT,
+    },
+    editBox = {
+      selectAll = true
+    },
+    buttons = {
+      {
+        requiresTextInput = true,
+        text = GetString(SI_SAVE),
+        callback =  function(dialog)
+          local label = ZO_Dialogs_GetEditBoxText(dialog)
+          AddSavedList(label)
+          BAF.SavedRefresh()
+          return
+        end,
+      },
+      {
+        text = SI_DIALOG_CANCEL,
+        callback =  function(dialog) return end,
+      },
+    }
   }
+)
+
+function BAF.QueueButton(Control, Key)
+  if Key == 1 then BAF.Queue() return end
+  if Key == 2 then
+    --No Selected Dungeons
+    if not BAF.SD[1] then return end
+    ZO_Dialogs_ShowDialog("BAF_SavedList")
+  end
+end
+
+function BAF.SavedButton(Control, Key)
+  local Index = Control.BAFIndex
+  if not Index then return end 
+  if Key == 1 then
+    BAF.EmptyDungeon()
+    BAF.PressButton(BAF.savedVariables.SavedList[Index]["Dungeons"])
+  end
+  if Key == 2 then
+    Control.BAFIndex = nil
+    table.remove(BAF.savedVariables.SavedList, Index)
+    BAF.SavedRefresh()
+  end
+end
+
+local ActivitySet = {
+  ["50Solo"]  = {67, 97, 98, 99, 100, 101},
+  ["50Group"] = {1 , 92, 93, 94,  95,  96},
+  ["49Solo"]  = {68, 87, 88, 89,  90,  91},
+  ["49Group"] = {2 , 82, 83, 84,  85,  86},
+}
+
 --Start group research
 function BAF.Queue(ActivitySetId)
 	ClearGroupFinderSearch()
@@ -242,33 +302,45 @@ function BAF.DailyInfo(Control, Type)
   SetTooltipText(InformationTooltip, String)
 end
 
+local IsVeteran = {}
+for i = 1, #BAF.BaseDungeonInfo do
+  IsVeteran[BAF.BaseDungeonInfo[i][2]] = true
+end
+for i = 1, #BAF.DLCDungeonInfo do
+  IsVeteran[BAF.DLCDungeonInfo[i][2]] = true
+end
+
 --InfoTooltip for Queue
 function BAF.DungeonSelectedInfo(Control)
   --No Selected Dungeons
   if not BAF.SD[1] then return end
   InitializeTooltip(InformationTooltip, Control, BOTTOM, 0, 0, TOP)
   local String = "\r\n  "
-  local Checked = function(ID)
-    for key, ActivityId in ipairs(BAF.SD) do
-      if ActivityId == ID then return true end
-    end
-    return false
-  end
-  for i = 1, #BAF.BaseDungeonInfo do
-    if Checked(BAF.BaseDungeonInfo[i][1]) then
-      String = String..GetActivityName(BAF.BaseDungeonInfo[i][1]).."\r\n  "
-    end
-    if Checked(BAF.BaseDungeonInfo[i][2]) then
-      String = String..GetActivityName(BAF.BaseDungeonInfo[i][2]).."  ("..GetString(SI_DUNGEONDIFFICULTY2)..")\r\n  "
+  for key, ActivityId in ipairs(BAF.SD) do
+    if IsVeteran[ActivityId] then
+      String = String..GetActivityName(ActivityId).."  ("..GetString(SI_DUNGEONDIFFICULTY2)..")\r\n  "
+    else
+      String = String..GetActivityName(ActivityId).."\r\n  "
     end
   end
-  for i = 1, #BAF.DLCDungeonInfo do
-    if Checked(BAF.DLCDungeonInfo[i][1]) then
-      String = String..GetActivityName(BAF.DLCDungeonInfo[i][1]).."\r\n  "
-    end
-    if Checked(BAF.DLCDungeonInfo[i][2]) then
-      String = String..GetActivityName(BAF.DLCDungeonInfo[i][2]).."  ("..GetString(SI_DUNGEONDIFFICULTY2)..")\r\n  "
+  String = String.."\r\n |cFFD700( "..GetString(SI_KEYCODE115).." ) "..GetString(SI_SAVE).."|r"
+  SetTooltipText(InformationTooltip, String)
+end
+
+--InfoTooltip for SavedBar
+function BAF.SavedBarInfo(Control)
+  local Index = Control.BAFIndex
+  if not Index then return end
+  InitializeTooltip(InformationTooltip, Control, BOTTOM, 0, 0, TOP)
+  local Dungeons = BAF.savedVariables.SavedList[Index]["Dungeons"]
+  local String = BAF.savedVariables.SavedList[Index]["Name"].."\r\n\r\n  "
+  for i = 1, #Dungeons do
+    if IsVeteran[Dungeons[i]] then
+      String = String..GetActivityName(Dungeons[i]).."  ("..GetString(SI_DUNGEONDIFFICULTY2)..")\r\n  "
+    else
+      String = String..GetActivityName(Dungeons[i]).."\r\n  "
     end
   end
+  String = String.."\r\n |cFFD700( "..GetString(SI_KEYCODE115).." ) "..GetString(SI_KEYCODE19).."|r"
   SetTooltipText(InformationTooltip, String)
 end

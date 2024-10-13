@@ -50,6 +50,9 @@ BAFLang_SI = {
   BUTTON_Queue_Status_Ready = "确认?",
   BUTTON_Queue_Status_Fight = "战斗中",
   
+  DIALOG_TITLE = "[BDF] 保存地下城列表",
+  DIALOG_TEXT = "为该列表输入一个名称",
+  
   SETTING_Finder_Header = "排本UI",
   SETTING_Finder_Lock = "锁定排本UI",
   SETTING_Finder_Lock_Info = "固定排本UI的当前位置",
@@ -77,6 +80,9 @@ BAFLang_SI = {
   SETTING_Other_AutoConfirm = "剩余X秒时自动确认",
   SETTING_Other_BGSound = "临时后台音频播放",
   SETTING_Other_BGSound_Info = "在准备倒计时期间，临时启用后台音频播放",
+  
+  SETTING_Sort_Header = "自定义地下城排序",
+  SETTING_Sort_AZ_Info = "按字母排序，与官方顺序相同",
   
   KEYBIND = "开关UI界面",
   

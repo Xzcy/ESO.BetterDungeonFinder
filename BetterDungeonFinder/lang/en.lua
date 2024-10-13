@@ -50,6 +50,9 @@ BAFLang_SI = {
   BUTTON_Queue_Status_Ready = "Ready?",
   BUTTON_Queue_Status_Fight = "Fighting",
   
+  DIALOG_TITLE = "[BDF] Save Dungeon List",
+  DIALOG_TEXT = "Enter a new name for the list",
+  
   SETTING_Finder_Header = "Dungeon Finder",
   SETTING_Finder_Lock = "Lock Dungeon Finder",
   SETTING_Finder_Lock_Info = "Lock the position of Dungeon Finder",
@@ -77,6 +80,9 @@ BAFLang_SI = {
   SETTING_Other_AutoConfirm = "Auto-Confirmation with x Seconds Remaining",
   SETTING_Other_BGSound = "Temporary Permission for Background Audio",
   SETTING_Other_BGSound_Info = "Temporarily allow the game to play audio in the background during the countdown to ready confirmation",
+  
+  SETTING_Sort_Header = "Customized Dungeon Sorting",
+  SETTING_Sort_AZ_Info = "Alphabetical, same order as official",
   
   KEYBIND = "Open/Close BDF",
   

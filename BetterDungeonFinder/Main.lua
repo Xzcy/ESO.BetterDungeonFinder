@@ -32,6 +32,8 @@ BAF.XML_Default = {
   
   BDSort = {},
   DDSort = {},
+  
+  SavedList = {},
 }
 --Start point
 local function OnAddOnLoaded(eventCode, addonName)

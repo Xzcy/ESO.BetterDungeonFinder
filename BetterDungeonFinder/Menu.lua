@@ -272,6 +272,10 @@ function BAF.buildMenu()
       width = "half",	
     },
     {
+			type = "header",
+			name = BAFLang_SI.SETTING_Sort_Header,
+		},
+    {
 		type = "submenu",
 		name = BAFLang_SI.TITLE_BaseDungeon,
 		controls = {
@@ -307,6 +311,7 @@ function BAF.buildMenu()
         {
         type = "button",
         name = GetString(SI_GAMEPAD_BANK_SORT_ORDER_UP_TEXT),
+        tooltip = BAFLang_SI.SETTING_Sort_AZ_Info,
         func = function() 
           BAF.savedVariables.BDSort = DungeonNameSort(false)
           BAF_BDList.data.text = DungeonList(false)
@@ -373,6 +378,7 @@ function BAF.buildMenu()
         {
         type = "button",
         name = GetString(SI_GAMEPAD_BANK_SORT_ORDER_UP_TEXT),
+        tooltip = BAFLang_SI.SETTING_Sort_AZ_Info,
         func = function() 
           BAF.savedVariables.DDSort = DungeonNameSort(true)
           BAF_DDList.data.text = DungeonList(true)
