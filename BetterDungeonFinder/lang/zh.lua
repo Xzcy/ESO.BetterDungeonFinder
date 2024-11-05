@@ -49,6 +49,7 @@ BAFLang_SI = {
   BUTTON_Queue_Status_Cancel = "取消",
   BUTTON_Queue_Status_Ready = "确认?",
   BUTTON_Queue_Status_Fight = "战斗中",
+  BUTTON_BG_Tooltip = "(左键) 4v4 (右键) 8v8",
   
   DIALOG_TITLE = "[BDF] 保存地下城列表",
   DIALOG_TEXT = "为该列表输入一个名称",

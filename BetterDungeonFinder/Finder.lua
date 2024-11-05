@@ -194,15 +194,42 @@ function BAF.SavedButton(Control, Key)
   end
 end
 
+--ActivitySetId for BG
 local ActivitySet = {
-  ["50Solo"]  = {67, 97, 98, 99, 100, 101},
-  ["50Group"] = {1 , 92, 93, 94,  95,  96},
-  ["49Solo"]  = {68, 87, 88, 89,  90,  91},
-  ["49Group"] = {2 , 82, 83, 84,  85,  86},
+  ["50S4"] = {146, 138, 139, 140, 141, 142},
+  ["50G4"] = {120, 133, 134, 135, 136, 137},
+
+  ["49S8"] = {145, 128, 129, 130, 131, 132},
+  ["49G8"] = {143, 123, 124, 125, 126, 127},
+  ["50S8"] = {144, 138, 139, 140, 141, 142},
+  ["50G8"] = {118, 133, 134, 135, 136, 137},
 }
 
+local function StartFinderSearch(Table, Daily)
+  --No Activities Selected
+  if Table[1] == nil then
+    d(BAFLang_SI.WARNING_NoSelect)
+    return
+  end
+  --Add Activities
+  local OnlyOne = true
+  for i = 1, #Table do
+    if Daily then
+      if OnlyOne and DoesActivitySetPassAvailablityRequirementList(Table[i]) then
+        AddActivityFinderSetSearchEntry(Table[i])
+        OnlyOne = false
+      end
+    else
+      AddActivityFinderSpecificSearchEntry(Table[i])
+    end
+  end
+  --Start!
+  StartGroupFinderSearch()
+  BAF.ShowWindow()
+end
+
 --Start group research
-function BAF.Queue(ActivitySetId)
+function BAF.Queue(Control, Key)
 	ClearGroupFinderSearch()
   
 -- none, 0；Queuing, 1; In progress, 2; Dungeon complete, 3; Ready Check, 4
@@ -215,52 +242,47 @@ function BAF.Queue(ActivitySetId)
   if QState == 2 then return end  --In progress
   if QState == 4 then return end  --Ready check
   
-  --DungeonSelected
-  if ActivitySetId then
-    --62 nD, 61 vD
-    if ActivitySetId == 0 then
-      local Tep = {}
+  if Control then
+    if Key == 61 then StartFinderSearch({61}, true) return end
+    if Key == 62 then StartFinderSearch({62}, true) return end
+    --4 BG
+    if Key == 1 then
+        --No 4v4 for U50
+      if GetUnitLevel("player") < 50 then
+        d(BAFLang_SI.WARNING_NoSelect)
+        return
+      end
+      if GetGroupSize() > 1 then
+        --Group
+        StartFinderSearch(ActivitySet["50G4"], true)
+      else
+        --Solo
+        StartFinderSearch(ActivitySet["50S4"], true)
+      end
+    end
+    --8 BG
+    if Key == 2 then
       if GetGroupSize() > 1 then
         --Group
         if GetUnitLevel("player") > 49 then
-          Tep = ActivitySet["50Group"]
+          StartFinderSearch(ActivitySet["50G8"], true)
         else
-          Tep = ActivitySet["49Group"]
+          StartFinderSearch(ActivitySet["49G8"], true)
         end
       else
         --Solo
         if GetUnitLevel("player") > 49 then
-          Tep = ActivitySet["50Solo"]
+          StartFinderSearch(ActivitySet["50S8"], true)
         else
-          Tep = ActivitySet["49Solo"]
+          StartFinderSearch(ActivitySet["49S8"], true)
         end
       end
-      for i = 1, #Tep do
-        if DoesActivitySetPassAvailablityRequirementList(Tep[i]) then
-          AddActivityFinderSetSearchEntry(Tep[i])
-          break
-        end
-      end
-    else
-      AddActivityFinderSetSearchEntry(ActivitySetId)
     end
   else
-    --CheckList
-    if BAF.SD[1] == nil then
-      d(BAFLang_SI.WARNING_NoSelect)
-      return
-    end
-    --Fill Dungeon to list
-    for i = 1, #BAF.SD do
-      if BAF.SD[i] ~= nil then
-        AddActivityFinderSpecificSearchEntry(BAF.SD[i])
-      end
-    end
+    --Dungeons
+    StartFinderSearch(BAF.SD)
   end
-  --Queue！
-	StartGroupFinderSearch()
-  --Close UI
-  BAF.ShowWindow()
+  return
 end
 
 local RewardType = {
@@ -294,9 +316,9 @@ function BAF.DailyInfo(Control, Type)
       or IsActivityEligibleForDailyReward(LFG_ACTIVITY_BATTLE_GROUND_LOW_LEVEL) 
       or IsActivityEligibleForDailyReward(LFG_ACTIVITY_BATTLE_GROUND_NON_CHAMPION) 
     then
-      String = RewardType[5]
+      String = RewardType[5].."\r\n\r\n"..BAFLang_SI.BUTTON_BG_Tooltip
     else
-      String = RewardType[6]
+      String = RewardType[6].."\r\n\r\n"..BAFLang_SI.BUTTON_BG_Tooltip
     end
   end
   SetTooltipText(InformationTooltip, String)

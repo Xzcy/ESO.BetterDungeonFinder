@@ -49,6 +49,7 @@ BAFLang_SI = {
   BUTTON_Queue_Status_Cancel = "Cancel",
   BUTTON_Queue_Status_Ready = "Ready?",
   BUTTON_Queue_Status_Fight = "Fighting",
+  BUTTON_BG_Tooltip = "(LMB) 4v4  (RMB) 8v8",
   
   DIALOG_TITLE = "[BDF] Save Dungeon List",
   DIALOG_TEXT = "Enter a new name for the list",

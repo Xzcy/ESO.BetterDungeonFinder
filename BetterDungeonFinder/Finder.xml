@@ -63,7 +63,7 @@
             normal="/esoui/art/treeicons/reconstruction_tabicon_dungeon_up.dds" 
             pressed="/esoui/art/treeicons/reconstruction_tabicon_dungeon_down.dds"
             mouseOver="/esoui/art/treeicons/reconstruction_tabicon_dungeon_over.dds"/>
-          <OnClicked> BetterDungonFinder.Queue(62) </OnClicked>
+          <OnClicked> BetterDungonFinder.Queue(self, 62) </OnClicked>
           <OnMouseEnter> BetterDungonFinder.DailyInfo(self, 1) </OnMouseEnter>
           <OnMouseExit> ClearTooltip(InformationTooltip) </OnMouseExit>
         </Button>
@@ -74,7 +74,7 @@
             normal="/esoui/art/tutorial/leaderboard_indexicon_raids_up.dds" 
             pressed="/esoui/art/journal/leaderboard_indexicon_raids_down.dds"
             mouseOver="/esoui/art/journal/leaderboard_indexicon_raids_over.dds"/>
-          <OnClicked> BetterDungonFinder.Queue(61) </OnClicked>
+          <OnClicked> BetterDungonFinder.Queue(self, 61) </OnClicked>
           <OnMouseEnter> BetterDungonFinder.DailyInfo(self, 2) </OnMouseEnter>
           <OnMouseExit> ClearTooltip(InformationTooltip) </OnMouseExit>
         </Button>
@@ -85,7 +85,8 @@
             normal="/esoui/art/lfg/lfg_indexicon_battlegrounds_up.dds" 
             pressed="/esoui/art/lfg/lfg_indexicon_battlegrounds_down.dds"
             mouseOver="/esoui/art/lfg/lfg_indexicon_battlegrounds_over.dds"/>
-          <OnClicked> BetterDungonFinder.Queue(0) </OnClicked>
+          <MouseButton button="2" enabled="true"/>
+          <OnClicked> BetterDungonFinder.Queue(...) </OnClicked>
           <OnMouseEnter> BetterDungonFinder.DailyInfo(self, 3) </OnMouseEnter>
           <OnMouseExit> ClearTooltip(InformationTooltip) </OnMouseExit>
         </Button>
