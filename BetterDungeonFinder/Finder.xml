@@ -3,6 +3,7 @@
   <Font name="BAFWinH2" font="$(BOLD_FONT)|$(KB_24)|soft-shadow-thick" />
   <Font name="BAFWinH3" font="$(BOLD_FONT)|$(KB_20)|soft-shadow-thick" />
   <Font name="BAFWinH4" font="$(BOLD_FONT)|$(KB_18)|soft-shadow-thick" />
+  <Font name="BAFWinH4T" font="$(MEDIUM_FONT)|$(KB_18)|soft-shadow-thick" />
   <Font name="BAFWinH5" font="$(BOLD_FONT)|$(KB_15)|soft-shadow-thick" />
   <Font name="BAFMetalTitle" font="$(ANTIQUE_FONT)|30|soft-shadow-thick" />
   <Controls>
@@ -159,11 +160,19 @@
         </Label>
         <Button name = "$(parent)_N" inherits ="ZO_CheckButton" tier = "HIGH">
           <Anchor point="BOTTOM" relativeTo="$(parent)" relativePoint="CENTER" offsetX="105" offsetY = "-3" />
+          <MouseButton button="2" enabled="true"/>
+          <OnClicked> BetterDungonFinder.SquareButton(...) </OnClicked>
           <OnMouseUp> BetterDungonFinder.SelectDungeonUpdate() </OnMouseUp>
+          <OnMouseEnter> InitializeTooltip(InformationTooltip, self, BOTTOM, 0, 0, TOP) SetTooltipText(InformationTooltip, BAFLang_SI.BUTTON_N_Info) </OnMouseEnter>
+          <OnMouseExit> ClearTooltip(InformationTooltip) </OnMouseExit>
         </Button>
         <Button name = "$(parent)_V" inherits ="ZO_CheckButton" tier = "HIGH">
           <Anchor point="BOTTOM" relativeTo="$(parent)" relativePoint="CENTER" offsetX="130" offsetY = "-3" />
+          <MouseButton button="2" enabled="true"/>
+          <OnClicked> BetterDungonFinder.SquareButton(...) </OnClicked>
           <OnMouseUp> BetterDungonFinder.SelectDungeonUpdate() </OnMouseUp>
+          <OnMouseEnter> InitializeTooltip(InformationTooltip, self, BOTTOM, 0, 0, TOP) SetTooltipText(InformationTooltip, BAFLang_SI.BUTTON_V_Info) </OnMouseEnter>
+          <OnMouseExit> ClearTooltip(InformationTooltip) </OnMouseExit>
         </Button>
         <Button name = "$(parent)_GearLink" clickSound="Click" tier = "HIGH">
           <Anchor point="BOTTOM" relativeTo="$(parent)" relativePoint="CENTER" offsetX="-35" offsetY="31.2" />
@@ -174,14 +183,16 @@
             mouseOver="esoui/art/collections/collections_tabicon_itemsets_over.dds"/>
           <OnMouseUp> BetterDungonFinder.OpenCollection(self) </OnMouseUp>
         </Button>
-        <Label name = "$(parent)_Gears" font="BAFWinH4" inheritAlpha="true" color="FFFFFF">
-          <Anchor point="BOTTOM" relativeTo="$(parent)" relativePoint="CENTER" offsetX="5" offsetY="26"/>
+        <Label name = "$(parent)_Gears" font="BAFWinH4T" inheritAlpha="true" color="FFFFFF">
+          <Anchor point="BOTTOM" relativeTo="$(parent)" relativePoint="CENTER" offsetX="5" offsetY="26.5"/>
         </Label>
         <Button name = "$(parent)_SK" clickSound="Click" tier="HIGH">
           <Dimensions x="28" y="28" />
           <Anchor point="BOTTOM" relativeTo="$(parent)" relativePoint="CENTER" offsetX="-60" offsetY="29.8"/>
           <Textures normal="esoui/art/mappins/skyshard_complete.dds"/>
           <OnMouseDoubleClick> BetterDungonFinder.AllSK() </OnMouseDoubleClick>
+          <OnMouseEnter> InitializeTooltip(InformationTooltip, self, BOTTOM, 0, 0, TOP) SetTooltipText(InformationTooltip, BAFLang_SI.BUTTON_Sky_Info) </OnMouseEnter>
+          <OnMouseExit> ClearTooltip(InformationTooltip) </OnMouseExit>
         </Button>
         <Button name = "$(parent)_HM" clickSound="Click" tier="HIGH">
           <Dimensions x="22" y="22" />

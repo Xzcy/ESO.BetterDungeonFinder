@@ -79,6 +79,25 @@ function BAF.EmptyDungeon()
   BAF.WindowUpdate()
 end
 
+--Choices for Check Button
+function BAF.SquareButton(control, key)
+  if key == 1 then ZO_CheckButton_OnClicked(control) return end
+  if key == 2 then
+    if not control.FTN then return end
+    local NodeIndex, isV = control.FTN[1], control.FTN[2]
+    --Change Difficulty
+    if CanPlayerChangeGroupDifficulty() or isV == IsUnitUsingVeteranDifficulty("player") then
+      SetVeteranDifficulty(isV)
+    else
+      d(BAFLang_SI.WARNING_Difficulty)
+      return
+    end
+    --Try Travel
+    FastTravelToNode(NodeIndex)
+    BAF.ShowWindow()
+  end
+end
+
 --Change the text of queue button/Auto confirm/BG Sound
 local CallId = nil
 function BAF.QueueStatus()
@@ -171,6 +190,7 @@ ZO_Dialogs_RegisterCustomDialog("BAF_SavedList",
   }
 )
 
+--Choices for Queue Button
 function BAF.QueueButton(Control, Key)
   if Key == 1 then BAF.Queue() return end
   if Key == 2 then
@@ -180,6 +200,7 @@ function BAF.QueueButton(Control, Key)
   end
 end
 
+--Choices for Saved List Button
 function BAF.SavedButton(Control, Key)
   local Index = Control.BAFIndex
   if not Index then return end 

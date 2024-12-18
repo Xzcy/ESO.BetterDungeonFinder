@@ -2,11 +2,11 @@
 ## Description: Dungeon Finder Extension.
 ## Author: @MelanAster
 ## APIVersion: 101044
-## AddOnVersion: 151
-## Version: 1.51
+## AddOnVersion: 160
+## Version: 1.60
 ## DependsOn: LibAddonMenu-2.0 LibSets
+## OptionalDependsOn: LibDataShare OdySupportIcons
 ## SavedVariables: BetterActivityFinder_Vars
-
 
 ## This Add-on is not created by, affiliated with or sponsored by ZeniMax Media Inc. or its affiliates. 
 ## The Elder Scrolls® and related logos are registered trademarks or trademarks of ZeniMax Media Inc. in the United States and/or other countries. 
@@ -19,6 +19,7 @@ lang/en.lua
 lang/$(language).lua
 
 DungeonUpdate.lua
+ChestMarker.lua
 
 Finder.lua
 FinderUpdate.lua

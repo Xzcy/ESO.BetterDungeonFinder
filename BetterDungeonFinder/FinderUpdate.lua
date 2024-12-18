@@ -34,7 +34,7 @@ function BAF.D2C(Control, List)
     Title:SetAnchor(BOTTOM, Control, CENTER, 5 + BAF.savedVariables.Window_LeftV, 14)
   end
   --Gear
-  if List["Gear"][1] == List["Gear"][2] then Gear:SetText("100%") else Gear:SetText(List["Gear"][1].."/"..List["Gear"][2]) end
+  if List["Gear"][1] == List["Gear"][2] then Gear:SetText("100%") else Gear:SetText(List["Gear"][1].." / "..List["Gear"][2]) end
   if List["IsRich"] then Gear:SetColor(0.698, 0.4, 1) else Gear:SetColor(1, 1, 1) end
   --Background
   BG:SetTexture("/BetterDungeonFinder/src/pic/BG_"..List["nId"]..".dds")
@@ -68,6 +68,9 @@ function BAF.D2C(Control, List)
   elseif List["Availability"] == 0 then
     Norm:SetHidden(true)
   end
+  --FastTravelNode
+  Norm.FTN = {List["TravelIndex"], false}
+  Vera.FTN = {List["TravelIndex"], true}
   --Whole show
   Control:SetHidden(false)
 end
@@ -203,7 +206,7 @@ function BAF.SelectDungeonUpdate()
     BAF.CheckButton(BAF.UDC[i], BAF.UD[i])
   end
   if BAF.SD == nil then return end
-  BAFWindow_Empty:SetText(BAFLang_SI.BUTTON_Empty.."("..#BAF.SD..")") -- Fill the text in empty button
+  BAFWindow_Empty:SetText(BAFLang_SI.BUTTON_Empty.." ("..#BAF.SD..")") -- Fill the text in empty button
 end
 
 --Which Button is pressed

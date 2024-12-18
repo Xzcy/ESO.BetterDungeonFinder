@@ -230,8 +230,31 @@ function BAF.buildMenu()
       end,
 		},
     {
-		type = "divider",
-    alpha = 0.2,
+      type = "divider",
+      alpha = 0.2,
+    },
+    {
+      type = "checkbox",
+			name = BAFLang_SI.SETTING_Other_MarkChests,
+			tooltip = BAFLang_SI.SETTING_Other_MarkChests_Info,
+			getFunc = function() return BAF.savedVariables.Mark_Chest end,
+			setFunc = function(value)
+        BAF.savedVariables.Mark_Chest = value
+        BAF.MarkChests()
+      end,
+    },
+    {
+      type = "checkbox",
+			name = BAFLang_SI.SETTING_Other_ShareChests,
+			tooltip = BAFLang_SI.SETTING_Other_ShareChests_Info,
+			getFunc = function() return BAF.savedVariables.Share_Chest end,
+			setFunc = function(value)
+        BAF.savedVariables.Share_Chest = value
+      end,
+    },
+    {
+      type = "divider",
+      alpha = 0.2,
     },
     {
       type = "slider",

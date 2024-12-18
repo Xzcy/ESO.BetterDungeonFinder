@@ -236,7 +236,8 @@ local RichPatch = { --Some pack have two Id
   [6218] = 6236,
   [6216] = 6231,
   [6214] = 6226,
-  }
+}
+
 function BAF.DungeonRich(PackID)
   for i = 1, #BAF.OnSale do
     if PackID == BAF.OnSale[i] then return true end

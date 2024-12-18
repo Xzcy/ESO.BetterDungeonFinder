@@ -21,12 +21,19 @@ BAF.XML_Default = {
   
   Pure_Black = false,
   Auto_Switch = true,
+  
+  Mark_Chest = true,
+  Share_Chest = true,
+  
   AutoConfirm = 0,
   AutoUDQ = true,
+  
   UDQDelay = 300,
+  
   BGSound = true,
   BGSoundC = false,
   AlertSound = 14,
+  
   AlphaLow = 0.2,
   AlphaHigh = 0.9,
   
@@ -34,29 +41,44 @@ BAF.XML_Default = {
   DDSort = {},
   
   SavedList = {},
+  ChestList = {},
 }
 --Start point
 local function OnAddOnLoaded(eventCode, addonName)
   --When BAF loaded
   if addonName ~= BAF.name then return end
 	EVENT_MANAGER:UnregisterForEvent(BAF.name, EVENT_ADD_ON_LOADED)
+  
   --Get account setting
   BAF.savedVariables = ZO_SavedVars:NewAccountWide("BetterActivityFinder_Vars", 1, nil, BAF.XML_Default, GetWorldName())
   BAF.Initial()
+  
   --Close with error, and reset it
   if BAF.savedVariables.BGSoundC then
     SetSetting(SETTING_TYPE_AUDIO, 12, 0)
     BAF.savedVariables.BGSoundC = false
   end
+  
   --keybind string
   ZO_CreateStringId("SI_BINDING_NAME_BDF_OPEN", BAFLang_SI.KEYBIND)
+  
   --RegisterEvent
   EVENT_MANAGER:RegisterForEvent(BAF.name, EVENT_ACTIVITY_FINDER_STATUS_UPDATE, BAF.QueueStatus)
   EVENT_MANAGER:RegisterForEvent(BAF.name, EVENT_ACTIVITY_FINDER_COOLDOWNS_UPDATE, BAF.CDRefresh)
   SCENE_MANAGER:RegisterTopLevel(BAFTopLevel, locksUIMode)
   SCENE_MANAGER:RegisterCallback("SceneStateChanged", BAF.UDQCore)
+  
+  EVENT_MANAGER:RegisterForEvent(BAF.name, EVENT_ZONE_CHANGED, BAF.ZoneChanged)
+  EVENT_MANAGER:RegisterForEvent(BAF.name, EVENT_CLIENT_INTERACT_RESULT, BAF.AddMarkChest)
+  
+  --LibDataShare
+  if LibDataShare then
+    BAF.ShareData = LibDataShare:RegisterMap("BetterDungeonFinder", 31, BAF.HandleDataShareReceived)
+    EVENT_MANAGER:RegisterForEvent(BAF.name, EVENT_PLAYER_COMBAT_STATE, BAF.SendChestMarkerData)
+  end
+  
   --Can get info from crown store now?
-  BAF.OnSalePack()
+  BAF.OnSalePack() 
   if BAF.OnSale[1] == nil then
     EVENT_MANAGER:RegisterForEvent(BAF.name, EVENT_PLAYER_ACTIVATED, BAF.FirstActived)
     SCENE_MANAGER:RegisterCallback("SceneStateChanged", BAF.CrownLoad)
@@ -138,7 +160,8 @@ function BAF.DungeonInitial()
       ["nId"] = BAF.BaseDungeonInfo[i][1],
       ["vId"] = BAF.BaseDungeonInfo[i][2],
       ["zoneId"] = GetActivityZoneId(BAF.BaseDungeonInfo[i][1]),
-      ["Style"] = BAF.BaseDungeonInfo[i][12]
+      ["Style"] = BAF.BaseDungeonInfo[i][12],
+      ["TravelIndex"] = BAF.BaseDungeonInfo[i][13],
 		}
 	end
 	for i = 1, #BAF.DLCDungeonInfo do
@@ -148,7 +171,8 @@ function BAF.DungeonInitial()
       ["nId"] = BAF.DLCDungeonInfo[i][1],
       ["vId"] = BAF.DLCDungeonInfo[i][2],
       ["zoneId"] = GetActivityZoneId(BAF.DLCDungeonInfo[i][1]),
-      ["Style"] = BAF.DLCDungeonInfo[i][12]
+      ["Style"] = BAF.DLCDungeonInfo[i][12],
+      ["TravelIndex"] = BAF.DLCDungeonInfo[i][13],
 		}
 	end
   BAF.DungeonUpdate()

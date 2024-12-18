@@ -32,8 +32,8 @@ BAFLang_SI = {
   FirstTime = "[BetterDungeonFinder] 检测到初次加载\r\n- 通过回车键唤出鼠标拖动|t30:30:esoui/art/lfg/lfg_indexicon_dungeon_up.dds|t图标\r\n- 推荐在控制中为BDF添加快捷键\r\n- 更多选项请查看BDF插件设置界面",
   
   TITLE = "地下城查找器+",
-  TITLE_BaseDungeon = "本体地下城 (n/v)",
-  TITLE_DLCDungeon = "DLC地下城 (n/v)",
+  TITLE_BaseDungeon = "本体地下城",
+  TITLE_DLCDungeon = "DLC地下城",
   TITLE_Undauted = "无畏者誓约",
   
   Caption_SK = "技能点",
@@ -43,13 +43,17 @@ BAFLang_SI = {
   Caption_TR = "三合一",
   
   BUTTON_Empty = "清空",
-  BUTTON_Empty_Clear = "清空(0)",
+  BUTTON_Empty_Clear = "清空 (0)",
+  
+  BUTTON_N_Info = "|cFFD700"..GetString(SI_DUNGEONDIFFICULTY1).."|r\r\n(左键) 选择\r\n(右键) 传送进本",
+  BUTTON_V_Info = "|cFFD700"..GetString(SI_DUNGEONDIFFICULTY2).."|r\r\n(左键) 选择\r\n(右键) 传送进本",
+  BUTTON_Sky_Info = "(双击) 技能点全选",
   
   BUTTON_Queue_Status_Queue = "排本!",
   BUTTON_Queue_Status_Cancel = "取消",
   BUTTON_Queue_Status_Ready = "确认?",
   BUTTON_Queue_Status_Fight = "战斗中",
-  BUTTON_BG_Tooltip = "(左键) 4v4 (右键) 8v8",
+  BUTTON_BG_Tooltip = "(左键) 4v4  (右键) 8v8",
   
   DIALOG_TITLE = "[BDF] 保存地下城列表",
   DIALOG_TEXT = "为该列表输入一个名称",
@@ -78,6 +82,10 @@ BAFLang_SI = {
   SETTING_Other_AutoUDQ_Delay = "交互延迟(ms)",
   SETTING_Other_AutoSwitchQuest = "自动切换无畏者任务",
   SETTING_Other_AutoSwitchQuest_Info = "在进入地下城时，自动切换至当前地下城对应的无畏者任务",
+  SETTING_Other_MarkChests = "标识地下城中宝箱的可能位置",
+  SETTING_Other_MarkChests_Info = "在进入地下城时，自动标识宝箱可能刷新的位置（需要 OdySupportIcons）\r\n实验性功能，类似于HarvestMap，你需要打开宝箱至少1次",
+  SETTING_Other_ShareChests = "分享地下城宝箱的可能位置",
+  SETTING_Other_ShareChests_Info = "在地下城中第一次脱战时，尝试和队友分享该地下城中宝箱的可能位置\r\n双方都需要 BDF, OdySupportIcons 和 LibDataShare",
   SETTING_Other_AutoConfirm = "剩余X秒时自动确认",
   SETTING_Other_BGSound = "临时后台音频播放",
   SETTING_Other_BGSound_Info = "在准备倒计时期间，临时启用后台音频播放",
@@ -89,6 +97,10 @@ BAFLang_SI = {
   
   WARNING_ChangRole = "[BDF] 目前无法更换职能",
   WARNING_NoSelect = "[BDF] 没有选取任何地下城",
+  WARNING_Difficulty = "[BDF] 目前无法更换地下城难度",
   WARNING_ReloadUI = "需要重新加载UI",
+  
+  MESSAGE_AddChestMark = "[BDF] 已添加宝箱刷新点",
+  MESSAGE_ReceivedChest = "[BDF] 从 <<2>> 接收了 <<1>> 个宝箱刷新点"
 }
 --Waring: Every line in BAFLang_SI should be ended with ,

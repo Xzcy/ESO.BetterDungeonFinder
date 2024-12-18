@@ -32,8 +32,8 @@ BAFLang_SI = {
   FirstTime = "[BetterDungeonFinder] First Time Loading\r\n- Use the Enter key to call up the mouse to drag |t30:30:esoui/art/lfg/lfg_indexicon_dungeon_up.dds|t\r\n- Set a shortcut key for BDF in Control (Optional)\r\n- Check out the setting menu for more BDF options",
   
   TITLE = "Better Dungeon Finder",
-  TITLE_BaseDungeon = "Base Dungeons (n/v)",
-  TITLE_DLCDungeon = "DLC Dungeons (n/v)",
+  TITLE_BaseDungeon = "Base Dungeons",
+  TITLE_DLCDungeon = "DLC Dungeons",
   TITLE_Undauted = "Undaunted Pledges", 
   
   Caption_SK = "Skill Point",
@@ -43,13 +43,17 @@ BAFLang_SI = {
   Caption_TR = "Trifecta",
   
   BUTTON_Empty = "Empty",
-  BUTTON_Empty_Clear = "Empty(0)",
+  BUTTON_Empty_Clear = "Empty (0)",
+  
+  BUTTON_N_Info = "|cFFD700"..GetString(SI_DUNGEONDIFFICULTY1).."|r\r\n(LMB) Select\r\n(RMB) Fast Travel",
+  BUTTON_V_Info = "|cFFD700"..GetString(SI_DUNGEONDIFFICULTY2).."|r\r\n(LMB) Select\r\n(RMB) Fast Travel",
+  BUTTON_Sky_Info = "(Double-Click) Select All Skill Points",
   
   BUTTON_Queue_Status_Queue = "Queue!",
   BUTTON_Queue_Status_Cancel = "Cancel",
   BUTTON_Queue_Status_Ready = "Ready?",
   BUTTON_Queue_Status_Fight = "Fighting",
-  BUTTON_BG_Tooltip = "(LMB) 4v4  (RMB) 8v8",
+  BUTTON_BG_Tooltip = "(LMB) 4v4   (RMB) 8v8",
   
   DIALOG_TITLE = "[BDF] Save Dungeon List",
   DIALOG_TEXT = "Enter a new name for the list",
@@ -78,6 +82,10 @@ BAFLang_SI = {
   SETTING_Other_AutoUDQ_Delay = "Interact Delay (ms)",
   SETTING_Other_AutoSwitchQuest = "Switch Quest in Undauted Dungeons",
   SETTING_Other_AutoSwitchQuest_Info = "Automatically track the undauted quests in dungeons for info",
+  SETTING_Other_MarkChests = "Automatically mark possible locations of chests in dungeons",
+  SETTING_Other_MarkChests_Info = "Require OdySupportIcons\r\n(Experimental function) similar to HarvestMap, you have to open the chest at least once",
+  SETTING_Other_ShareChests = "Share Possible Locations of Dungeon Chests",
+  SETTING_Other_ShareChests_Info = "When the first time out of combat in dungeons, attempt to share the possible location of that dungeon's chests with your members \r\nBoth sides need BDF, OdySupportIcons and LibDataShare",
   SETTING_Other_AutoConfirm = "Auto-Confirmation with x Seconds Remaining",
   SETTING_Other_BGSound = "Temporary Permission for Background Audio",
   SETTING_Other_BGSound_Info = "Temporarily allow the game to play audio in the background during the countdown to ready confirmation",
@@ -89,6 +97,10 @@ BAFLang_SI = {
   
   WARNING_ChangRole = "[BDF] Not Now.",
   WARNING_NoSelect = "[BDF] NO Dungeon Selected.",
+  WARNING_Difficulty = "[BDF] Unable to Change Difficulty Now.",
   WARNING_ReloadUI = "Need to reload the UI.",
+  
+  MESSAGE_AddChestMark = "[BDF] Added a refresh point of chest",
+  MESSAGE_ReceivedChest = "[BDF] Received <<1>> refresh points of chest from <<2>>"
 }
 --Waring: Every line in BAFLang_SI should be ended with ,
