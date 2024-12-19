@@ -5,7 +5,7 @@ local BAF = BetterDungonFinder
 BAF.name = "BetterDungeonFinder"
 BAF.title = "BetterDungeonFinder"
 BAF.author = "@MelanAster"
-BAF.version = "1.60"
+BAF.version = "1.61"
 
 --01, Normal activityId
 --02, Vertern activityId

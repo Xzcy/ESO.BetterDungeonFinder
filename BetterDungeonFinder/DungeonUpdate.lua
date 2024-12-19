@@ -205,6 +205,9 @@ end
 
 --To auto switch quest tracked
 function BAF.AutoStitchUQ()
+  --Patch for Marking chests after ReloadUI
+  BAF.MarkChests()
+  --
   if BAF.savedVariables.Auto_Switch == false or IsUnitInDungeon("player") == false then return end
   local ZoneId = GetUnitWorldPosition("player")
   local QuestID

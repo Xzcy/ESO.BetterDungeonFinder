@@ -5,6 +5,20 @@ local function Distance(p1, p2)
   return math.sqrt(math.pow(p1[1] - p2[1], 2) + math.pow(p1[2] - p2[2], 2) + math.pow(p1[3] - p2[3], 2))
 end
 
+local zoneIdList
+local function IsPlayerInDungeon(zondId)
+  if not zoneIdList then
+    zoneIdList = {}
+    for i = 1, #BAF.BaseDungeonInfo do
+      zoneIdList[BAF.BaseDungeonInfo[i][3]] = true
+    end
+    for i = 1, #BAF.DLCDungeonInfo do
+      zoneIdList[BAF.DLCDungeonInfo[i][3]] = true
+    end
+  end
+  return zoneIdList[zondId]
+end
+
 local function Merge(displayName, zondId, xyzTable)
   local Count = 0
   --Check Any New Position
@@ -57,7 +71,7 @@ function BAF.MarkChests()
   end
   CurrentMarks = {}
   --Check Setting
-  if BAF.savedVariables.Mark_Chest == false or IsUnitInDungeon("player") == false then return end
+  if BAF.savedVariables.Mark_Chest == false or IsPlayerInDungeon(ZoneId) == false then return end
   --Mark
   local List = BAF.savedVariables.ChestList[ZoneId] or {}
   for key, xyz in pairs(List) do
@@ -80,11 +94,10 @@ local ChestName = {
 
 --Add location of unmarked chest
 function BAF.AddMarkChest(eventCode, result, targetName)
-  --Check Dungeons and Chests
-  if IsUnitInDungeon("player") == false then return end
-  if not ChestName[targetName] then return end
   --Initialize
+  if not ChestName[targetName] then return end
   local ZoneId, cX, cY, cZ = GetUnitWorldPosition("player")
+  if IsPlayerInDungeon(ZoneId) == false then return end
   --Add
   BAF.savedVariables.ChestList[ZoneId] = BAF.savedVariables.ChestList[ZoneId] or {}
   for i = 1, #BAF.savedVariables.ChestList[ZoneId] do
@@ -94,7 +107,7 @@ function BAF.AddMarkChest(eventCode, result, targetName)
   end
   d(BAFLang_SI.MESSAGE_AddChestMark)
   table.insert(BAF.savedVariables.ChestList[ZoneId], {cX, cY, cZ})
-  table.insert(CurrentMarks, OSI.CreatePositionIcon(cX, cY, cZ, "/esoui/art/icons/quest_strosmkai_open_treasure_chest.dds"))
+  BAF.MarkChests()
 end
 
 --Data Share--
@@ -134,9 +147,9 @@ function BAF.SendChestMarkerData(Code, IsCombat)
   if BAF.savedVariables.Share_Chest == false then return end
   --Check Dungeons and Out of Combat
   if IsCombat then return end
-  if IsUnitInDungeon("player") == false then return end
-  --Avoid Repeated Messages
   local ZoneId = GetUnitWorldPosition("player")
+  if IsPlayerInDungeon(ZoneId) == false then return end
+  --Avoid Repeated Messages
   if ZoneLock then return else ZoneLock = ZoneId end
   --Prepare Raw Data
   local RawTable = {}
@@ -154,9 +167,4 @@ function BAF.SendChestMarkerData(Code, IsCombat)
     BAF.ShareData:QueueData(RawTable[i])
   end
   BAF.ShareData:QueueData(ZoneId*1000 + 9)
-end
-
---Test
-function BAFTEST(control, key)
-  d(key)
 end
