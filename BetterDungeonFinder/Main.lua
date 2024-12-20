@@ -73,7 +73,7 @@ local function OnAddOnLoaded(eventCode, addonName)
   
   --LibDataShare
   if LibDataShare then
-    BAF.ShareData = LibDataShare:RegisterMap("BetterDungeonFinder", 31, BAF.HandleDataShareReceived)
+    BAF.ShareData = LibDataShare:RegisterMap("BetterDungeonFinder", 38, BAF.HandleDataShareReceived)
     EVENT_MANAGER:RegisterForEvent(BAF.name, EVENT_PLAYER_COMBAT_STATE, BAF.SendChestMarkerData)
   end
   

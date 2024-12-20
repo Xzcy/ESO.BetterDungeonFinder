@@ -71,7 +71,7 @@ function BAF.MarkChests()
   end
   CurrentMarks = {}
   --Check Setting
-  if BAF.savedVariables.Mark_Chest == false or IsPlayerInDungeon(ZoneId) == false then return end
+  if (BAF.savedVariables.Mark_Chest == false) or (not IsPlayerInDungeon(ZoneId)) then return end
   --Mark
   local List = BAF.savedVariables.ChestList[ZoneId] or {}
   for key, xyz in pairs(List) do
@@ -97,7 +97,7 @@ function BAF.AddMarkChest(eventCode, result, targetName)
   --Initialize
   if not ChestName[targetName] then return end
   local ZoneId, cX, cY, cZ = GetUnitWorldPosition("player")
-  if IsPlayerInDungeon(ZoneId) == false then return end
+  if not IsPlayerInDungeon(ZoneId) then return end
   --Add
   BAF.savedVariables.ChestList[ZoneId] = BAF.savedVariables.ChestList[ZoneId] or {}
   for i = 1, #BAF.savedVariables.ChestList[ZoneId] do
@@ -148,7 +148,7 @@ function BAF.SendChestMarkerData(Code, IsCombat)
   --Check Dungeons and Out of Combat
   if IsCombat then return end
   local ZoneId = GetUnitWorldPosition("player")
-  if IsPlayerInDungeon(ZoneId) == false then return end
+  if not IsPlayerInDungeon(ZoneId) then return end
   --Avoid Repeated Messages
   if ZoneLock then return else ZoneLock = ZoneId end
   --Prepare Raw Data
