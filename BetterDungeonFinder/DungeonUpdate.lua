@@ -37,52 +37,54 @@ BAF.TodayUndaunted = {}
 function BAF.OnDailyU(Stamp)
   BAF.TodayUndaunted = {}
   local Cycle_1 = {
-    2,    -- Fungal Grotto I
-    300,  -- The Banished Cells II
-    5,    -- Darkshade Caverns I
-    303,  -- Elden Hollow II
-    6,    -- Wayrest Sewers I
-    316,  -- Spindleclutch II
-    4,    -- The Banished Cells I
-    18,   -- Fungal Grotto II
-    3,    -- Spindleclutch I
-    308,  -- Darkshade Caverns II
-    7,    -- Elden Hollow I
-    22,   -- Wayrest Sewers II
+    2,    --01 Fungal Grotto I
+    300,  --02 The Banished Cells II
+    5,    --03 Darkshade Caverns I
+    303,  --04 Elden Hollow II
+    6,    --05 Wayrest Sewers I
+    316,  --06 Spindleclutch II
+    4,    --07 The Banished Cells I
+    18,   --08 Fungal Grotto II
+    3,    --09 Spindleclutch I
+    308,  --10 Darkshade Caverns II
+    7,    --11 Elden Hollow I
+    22,   --12 Wayrest Sewers II
   }
   local Cycle_2 = {
-    16,   -- Selene's Web
-    322,  -- City of Ash II
-    9,    -- Crypt of Hearts I
-    12,   -- Volenfell
-    14,   -- Blessed Crucible
-    11,   -- Direfrost Keep
-    17,   -- Vaults of Madness
-    317,  -- Crypt of Hearts II
-    10,   -- City of Ash I
-    13,   -- Tempest Island
-    15,   -- Blackheart Haven
-    8,    -- Arx Corinium
+    16,   --01 Selene's Web
+    322,  --02 City of Ash II
+    9,    --03 Crypt of Hearts I
+    12,   --04 Volenfell
+    14,   --05 Blessed Crucible
+    11,   --06 Direfrost Keep
+    17,   --07 Vaults of Madness
+    317,  --08 Crypt of Hearts II
+    10,   --09 City of Ash I
+    13,   --10 Tempest Island
+    15,   --11 Blackheart Haven
+    8,    --12 Arx Corinium
   }
   
-  --2024.09.17 UTC 13:24
-  local StartTime, StartIndex = 1726579413, {12, 12, 4} 
+  --2025.03.10 UTC 15:07
+  local StartTime, StartIndex = 1741619141, {6, 6, 30} 
+  
   local Cycle_3 = {
-    289, 293, -- Imperial City Prison, Ruins of Mazzatun
-    288, 295, -- White-Gold Tower, Cradle of Shadows
-    324, 368, -- Bloodroot Forge, Falkreath Hold
-    420, 418, -- Fang Lair, Scalecaller Peak
-    426, 428, -- Moon Hunter Keep, March of Sacrifices
-    435, 433, -- Depths of Malatar, Frostvault
-    494, 496, -- Moongrave Fane, Lair of Maarselok
-    503, 505, -- Icereach, Unhallowed Grave
-    507, 509, -- Stone Garden, Castle Thorn
-    591, 593, -- Black Drake Villa, The Cauldron
-    595, 597, -- Red Petal Bastion, The Dread Cellar
-    599, 601, -- Coral Aerie, Shipwright's Regret
-    608, 610, -- Earthen Root Enclave, Graven Deep
-    613, 615, -- Bal Sunnar, Scrivener's Hall
-    638, 640, -- Oathsworn Pit, Bedlam Veil
+    289, 293, --01, 02 Imperial City Prison, Ruins of Mazzatun
+    288, 295, --03, 04 White-Gold Tower, Cradle of Shadows
+    324, 368, --05, 06 Bloodroot Forge, Falkreath Hold
+    420, 418, --07, 08 Fang Lair, Scalecaller Peak
+    426, 428, --09, 10 Moon Hunter Keep, March of Sacrifices
+    435, 433, --11, 12 Depths of Malatar, Frostvault
+    494, 496, --13, 14 Moongrave Fane, Lair of Maarselok
+    503, 505, --15, 16 Icereach, Unhallowed Grave
+    507, 509, --17, 18 Stone Garden, Castle Thorn
+    591, 593, --19, 20 Black Drake Villa, The Cauldron
+    595, 597, --21, 22 Red Petal Bastion, The Dread Cellar
+    599, 601, --23, 24 Coral Aerie, Shipwright's Regret
+    608, 610, --25, 26 Earthen Root Enclave, Graven Deep
+    613, 615, --27, 28 Bal Sunnar, Scrivener's Hall
+    638, 640, --29, 30 Oathsworn Pit, Bedlam Veil
+    855, 857, --31, 32 Exiled Redoubt, Lep Seclusa
   }
   
   local NextUpdateTime = Stamp or (GetTimeStamp() + GetTimeUntilNextDailyLoginRewardClaimS())

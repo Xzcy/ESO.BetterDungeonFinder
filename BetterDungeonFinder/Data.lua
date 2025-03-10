@@ -5,21 +5,22 @@ local BAF = BetterDungonFinder
 BAF.name = "BetterDungeonFinder"
 BAF.title = "BetterDungeonFinder"
 BAF.author = "@MelanAster"
-BAF.version = "1.62"
+BAF.version = "1.70"
 
---01, Normal activityId
---02, Vertern activityId
---03, Zone Id
---04, SetsId Table
---05, HM AchievementId
---06, SR AchievementId
---07, ND AchievementId
---08, Tri AchievementID
---09, SkillPoint QuestId
---10, Undaunted QuestId
---11, Undaunted weapon style PackId
---12, Dungeon Style master achievement
---13, Fast Travel Node Index
+--01, Normal activityId                   /script for i = 1, 10000 do if select(7, GetActivityInfo(i)) == 4 then d(i.." "..GetActivityName(i)) end end    
+--02, Vertern activityId                  ...
+--03, Zone Id                             /script d(GetActivityZoneId(integer activityId))
+--04, SetsId Table                        /script d(select(6, GetItemLinkSetInfo("string itemLink")))
+--05, HM AchievementId                    /script d(GetAchievementIdFromLink("string link"))
+--06, SR AchievementId                    ...
+--07, ND AchievementId                    ...
+--08, Tri AchievementId                   ...
+--09, SkillPoint QuestId                  /script d(GetQuestName(integer questId))
+--10, Undaunted QuestId                   /script for i = 1, 20000 do if GetQuestZoneId(i) == * then d(i.." "..GetQuestName(i)) end end
+--11, Undaunted weapon style PackId       /script BetterDungonFinder.PackScan("Arms Pack")
+--12, Dungeon Style master achievement    ...
+--13, Fast Travel Node Index              /script for i = 1, 10000 do if select(6, GetFastTravelNodeInfo(i)) == "/esoui/art/icons/poi/poi_groupinstance_glow.dds" then d(i.." "..select(2, GetFastTravelNodeInfo(i))) end end
+
 BAF.BaseDungeonInfo = {
   [1] =  {4,   20,  380, {265, 197, 110, 295, 170}, 1554, 1552, 1553, nil, 4107, 5244, 6218, nil, 198}, -- The Banished Cells I
   [2] =  {300, 301, 935, {265, 197, 110, 295, 170}, 451,  449,  1564, nil, 4597, 5246, 9137, nil, 262}, -- The Banished Cells II
@@ -77,8 +78,9 @@ BAF.DLCDungeonInfo = {
   [28] = {615, 616, 1390, {684, 685, 686, 687}, 3531, 3532, 3533, 3535, 7027, 7028, nil,   3546, 532}, -- Scrivener's Hall
   [29] = {638, 639, 1470, {732, 734, 730, 731}, 3812, 3813, 3814, 3816, 7105, 7106, nil,   3921, 556}, -- Oathsworn Pit
   [30] = {640, 641, 1471, {736, 737, 738, 735}, 3853, 3854, 3855, 3857, 7155, 7156, 13229, 3922, 565}, -- Bedlam Veil
+  [31] = {855, 856, 1496, {797, 794, 796, 795}, 4111, 4112, 4113, 4115, 7235, 7236, nil,   4159, 581}, -- Exiled Redoubt
+  [32] = {857, 858, 1497, {801, 800, 798, 799}, 4130, 4131, 4132, 4134, 7237, 7238, nil,   4160, 582}, -- Lep Seclusa
 }
---You can customize the index of dungeon by switch the index number in []
 
 --The status of dungeons of player
 BAF.BD = {
