@@ -5,7 +5,7 @@ local BAF = BetterDungonFinder
 BAF.name = "BetterDungeonFinder"
 BAF.title = "BetterDungeonFinder"
 BAF.author = "@MelanAster"
-BAF.version = "1.70"
+BAF.version = "1.71"
 
 --01, Normal activityId                   /script for i = 1, 10000 do if select(7, GetActivityInfo(i)) == 4 then d(i.." "..GetActivityName(i)) end end    
 --02, Vertern activityId                  ...

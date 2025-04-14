@@ -49,14 +49,13 @@ end
 
 --Var
 local CurrentMarks = {}
-local ReceivedData = {}
+--local ReceivedData = {}
 local ZoneLock
 
 function BAF.ZoneChanged()
   --Reset ZoneLock and ReceivedData
   ZoneLock = nil
-  ReceivedData = {}
-  
+  --ReceivedData = {}
   BAF.MarkChests()
 end
 
@@ -115,9 +114,10 @@ function BAF.HandleDataShareReceived(tag, data)
   --Check Setting
   if BAF.savedVariables.Share_Chest == false then return end
   --Initialize
-  local Fliter = data % 10
   local ZoneId = GetUnitWorldPosition(tag)
   local Name = GetUnitDisplayName(tag)
+  --[[
+  local Fliter = data % 10
   --Start Point
   if Fliter == 0 then 
     ReceivedData[Name] = {}
@@ -140,6 +140,15 @@ function BAF.HandleDataShareReceived(tag, data)
     end
     return
   end
+  ]]
+  if ZoneId == data.zoneId and data.xyz then
+    local xyzLists = {}
+    if (#data.xyz)%3 ~= 0 then return end
+    for i = 1, (#data.xyz)/3 do
+      table.insert(xyzLists, {data.xyz[3*i-2], data.xyz[3*i-1], data.xyz[3*i]})
+    end
+    Merge(Name, ZoneId, xyzLists)
+  end
 end
 
 function BAF.SendChestMarkerData(Code, IsCombat)
@@ -151,6 +160,7 @@ function BAF.SendChestMarkerData(Code, IsCombat)
   if not IsPlayerInDungeon(ZoneId) then return end
   --Avoid Repeated Messages
   if ZoneLock then return else ZoneLock = ZoneId end
+  --[[
   --Prepare Raw Data
   local RawTable = {}
   if not BAF.savedVariables.ChestList[ZoneId] then return end
@@ -167,4 +177,16 @@ function BAF.SendChestMarkerData(Code, IsCombat)
     BAF.ShareData:QueueData(RawTable[i])
   end
   BAF.ShareData:QueueData(ZoneId*1000 + 9)
+  ]]
+  local xyzList = {}
+  if not BAF.savedVariables.ChestList[ZoneId] then return end
+  for i = 1, #BAF.savedVariables.ChestList[ZoneId] do
+    table.insert(xyzList, BAF.savedVariables.ChestList[ZoneId][i][1])
+    table.insert(xyzList, BAF.savedVariables.ChestList[ZoneId][i][2])
+    table.insert(xyzList, BAF.savedVariables.ChestList[ZoneId][i][3])
+  end
+  BAF.ShareProtocol:Send({
+    zoneId = ZoneId,
+    xyz = xyzList
+  })
 end

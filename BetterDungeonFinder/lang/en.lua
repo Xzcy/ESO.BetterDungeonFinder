@@ -82,10 +82,15 @@ BAFLang_SI = {
   SETTING_Other_AutoUDQ_Delay = "Interact Delay (ms)",
   SETTING_Other_AutoSwitchQuest = "Switch Quest in Undauted Dungeons",
   SETTING_Other_AutoSwitchQuest_Info = "Automatically track the undauted quests in dungeons for info",
-  SETTING_Other_MarkChests = "Automatically mark possible locations of chests in dungeons",
-  SETTING_Other_MarkChests_Info = "Require OdySupportIcons\r\n(Experimental function) similar to HarvestMap, you have to open the chest at least once",
+  SETTING_Other_DoubleCQTE = "Remember to Submit Quests!",
+  SETTING_Other_DoubleCQTE_Info = "When holding skill point quests, exiting dungeon requires a second confirmation",
+  DIALOG_DoubelCQTE_MT = "Found unsubmitted |cFFD700skill point quests|r (<<1>>). Confirm exiting?",
+  
+  SETTING_Other_MarkChests = "Mark possible locations of chests in dungeons",
+  SETTING_Other_MarkChests_Info = "Record and mark the locations of the chests you have opened in dungeons (Require OdySupportIcons)",
   SETTING_Other_ShareChests = "Share Possible Locations of Dungeon Chests",
-  SETTING_Other_ShareChests_Info = "When the first time out of combat in dungeons, attempt to share the possible location of that dungeon's chests with your members \r\nBoth sides need BDF, OdySupportIcons and LibDataShare",
+  SETTING_Other_ShareChests_Info = "When the first time out of combat in dungeons, attempt to share the possible location of that dungeon's chests with your members \r\nBoth sides need BDF, OdySupportIcons and LibGroupBroadcast",
+  
   SETTING_Other_AutoConfirm = "Auto-Confirmation with x Seconds Remaining",
   SETTING_Other_BGSound = "Temporary Permission for Background Audio",
   SETTING_Other_BGSound_Info = "Temporarily allow the game to play audio in the background during the countdown to ready confirmation",

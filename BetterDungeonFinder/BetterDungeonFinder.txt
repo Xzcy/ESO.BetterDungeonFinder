@@ -2,10 +2,10 @@
 ## Description: Dungeon Finder Extension.
 ## Author: @MelanAster
 ## APIVersion: 101044 101045
-## AddOnVersion: 170
-## Version: 1.70
+## AddOnVersion: 171
+## Version: 1.71
 ## DependsOn: LibAddonMenu-2.0 LibSets
-## OptionalDependsOn: LibDataShare OdySupportIcons
+## OptionalDependsOn: LibGroupBroadcast OdySupportIcons
 ## SavedVariables: BetterActivityFinder_Vars
 
 ## This Add-on is not created by, affiliated with or sponsored by ZeniMax Media Inc. or its affiliates. 

@@ -236,6 +236,46 @@ function BAF.AutoStitchUQ()
   end
 end
 
+--Double check for leaving dungeons when holding skill point quest
+local OldQTE = ExitInstanceImmediately
+function BAF.DoubleCheckPTE()
+  if BAF.savedVariables.DoubleCQTE then
+    ExitInstanceImmediately = function()
+      local nowZoneId =  GetUnitWorldPosition("player")
+      local relatedQuestId
+      for i = 1, #BAF.BaseDungeonInfo do
+        if nowZoneId == BAF.BaseDungeonInfo[i][3] then relatedQuestId = BAF.BaseDungeonInfo[i][9] end
+      end
+      for i = 1, #BAF.DLCDungeonInfo do
+        if nowZoneId == BAF.DLCDungeonInfo[i][3] then relatedQuestId = BAF.DLCDungeonInfo[i][9] end
+      end
+      --No related skill quests in this zone
+      if not relatedQuestId or not HasQuest(relatedQuestId) then OldQTE() return end
+      --Double Check Dialog Register
+      if not ESO_Dialogs["BetterDungeonFinder_DoubleCheckQTE"] then
+        ESO_Dialogs["BetterDungeonFinder_DoubleCheckQTE"] = {
+          canQueue = true,
+          title = {text = "BDF"},
+          mainText = {text = BAFLang_SI.DIALOG_DoubelCQTE_MT},
+          buttons = {
+            {
+              text = GetString(SI_EXIT_BUTTON),
+              callback = function(dialog) OldQTE() return end,
+            },
+            {
+              text = SI_DIALOG_CANCEL,
+              callback =  function(dialog) return end,
+            },
+          }
+        }
+      end
+      ZO_Dialogs_ShowDialog("BetterDungeonFinder_DoubleCheckQTE", nil, {mainTextParams = {GetQuestName(relatedQuestId)}})
+    end
+  else
+    ExitInstanceImmediately = OldQTE
+  end
+end
+
 --Look for dungeon droping style according to onsale armor pack.
 local RichPatch = { --Some pack have two Id
   [6218] = 6236,

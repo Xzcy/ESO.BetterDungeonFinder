@@ -230,6 +230,16 @@ function BAF.buildMenu()
       end,
 		},
     {
+			type = "checkbox",
+			name = BAFLang_SI.SETTING_Other_DoubleCQTE,
+			tooltip = BAFLang_SI.SETTING_Other_DoubleCQTE_Info,
+			getFunc = function() return BAF.savedVariables.DoubleCQTE end,
+			setFunc = function(value)
+        BAF.savedVariables.DoubleCQTE = value
+        BAF.DoubleCheckPTE()
+      end,
+    },
+    {
       type = "divider",
       alpha = 0.2,
     },

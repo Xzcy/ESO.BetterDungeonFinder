@@ -82,10 +82,15 @@ BAFLang_SI = {
   SETTING_Other_AutoUDQ_Delay = "交互延迟(ms)",
   SETTING_Other_AutoSwitchQuest = "自动切换无畏者任务",
   SETTING_Other_AutoSwitchQuest_Info = "在进入地下城时，自动切换至当前地下城对应的无畏者任务",
+  SETTING_Other_DoubleCQTE = "记得交任务！",
+  SETTING_Other_DoubleCQTE_Info = "有技能点任务时，退出地下城需要二次确认",
+  DIALOG_DoubelCQTE_MT = "发现未提交的|cFFD700技能点任务|r（<<1>>），确认退出吗？",
+  
   SETTING_Other_MarkChests = "标识地下城中宝箱的可能位置",
-  SETTING_Other_MarkChests_Info = "在进入地下城时，自动标识宝箱可能刷新的位置（需要 OdySupportIcons）\r\n实验性功能，类似于HarvestMap，你需要打开宝箱至少1次",
+  SETTING_Other_MarkChests_Info = "记录并标记你曾经在地下城中打开过的宝箱的位置（需要 OdySupportIcons）",
   SETTING_Other_ShareChests = "分享地下城宝箱的可能位置",
-  SETTING_Other_ShareChests_Info = "在地下城中第一次脱战时，尝试和队友分享该地下城中宝箱的可能位置\r\n双方都需要 BDF, OdySupportIcons 和 LibDataShare",
+  SETTING_Other_ShareChests_Info = "在地下城中第一次脱战时，尝试和队友分享该地下城中宝箱的可能位置\r\n双方都需要 BDF, OdySupportIcons 和 LibGroupBroadcast",
+  
   SETTING_Other_AutoConfirm = "剩余X秒时自动确认",
   SETTING_Other_BGSound = "临时后台音频播放",
   SETTING_Other_BGSound_Info = "在准备倒计时期间，临时启用后台音频播放",

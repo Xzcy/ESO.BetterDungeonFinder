@@ -27,6 +27,7 @@ BAF.XML_Default = {
   
   AutoConfirm = 0,
   AutoUDQ = true,
+  DoubleCQTE = true,
   
   UDQDelay = 300,
   
@@ -71,9 +72,29 @@ local function OnAddOnLoaded(eventCode, addonName)
   EVENT_MANAGER:RegisterForEvent(BAF.name, EVENT_ZONE_CHANGED, BAF.ZoneChanged)
   EVENT_MANAGER:RegisterForEvent(BAF.name, EVENT_CLIENT_INTERACT_RESULT, BAF.AddMarkChest)
   
+  --[[
   --LibDataShare
   if LibDataShare then
     BAF.ShareData = LibDataShare:RegisterMap("BetterDungeonFinder", 38, BAF.HandleDataShareReceived)
+    EVENT_MANAGER:RegisterForEvent(BAF.name, EVENT_PLAYER_COMBAT_STATE, BAF.SendChestMarkerData)
+  end
+  ]]
+  
+  --LibGroupBroadcast
+  if LibGroupBroadcast then
+    local LGB = LibGroupBroadcast
+    BAF.ShareHandler = LGB:RegisterHandler(BAF.name)
+    BAF.ShareHandler:SetDisplayName(BAF.name)
+    BAF.ShareProtocol = BAF.ShareHandler:DeclareProtocol(100, BAF.name)
+    BAF.ShareProtocol:AddField(LGB.CreateNumericField("zoneId", {minValue = 1, maxValue = 10000}))
+    BAF.ShareProtocol:AddField(LGB.CreateArrayField(
+      LGB.CreateNumericField("xyz", {minValue = 0, maxValue = 999999}), {maxLength = 120}
+    ))
+    BAF.ShareProtocol:OnData(BAF.HandleDataShareReceived)
+    BAF.ShareProtocol:Finalize({
+      isRelevantInCombat = false,
+      replaceQueuedMessages = false,
+    })
     EVENT_MANAGER:RegisterForEvent(BAF.name, EVENT_PLAYER_COMBAT_STATE, BAF.SendChestMarkerData)
   end
   
@@ -125,6 +146,7 @@ function BAF.Initial()
   BAF.DungeonInitial()
   BAF.ControlsInitial()
   BAF.WindowInitial()
+  BAF.DoubleCheckPTE()
   --RegisterAddonMenu and update lock
   BAF.buildMenu()
 end
