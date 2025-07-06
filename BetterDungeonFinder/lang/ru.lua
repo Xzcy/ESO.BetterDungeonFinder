@@ -27,7 +27,7 @@ BAFFontSize = MyFont
  
 BAFFontSize = ""
  
---String Used in addon.
+--String Used in addon. Contributed by Lost.Seeker
 BAFLang_SI = {
   FirstTime = "[BetterDungeonFinder] Первая загрузка\r\n- Используйте Enter чтобы вызвать курсор для переноса |t30:30:esoui/art/lfg/lfg_indexicon_dungeon_up.dds|t\r\n- Назначте кнопку для BDF в настройках (Опционально)\r\n- Дополнительные опции в меню настроек BDF",
   
