@@ -23,6 +23,8 @@ BAF.XML_Default = {
   Auto_Switch = true,
   
   Mark_Chest = true,
+  Icon_Chest = "/esoui/art/icons/quest_strosmkai_open_treasure_chest.dds",
+  Size_Cheset = 128,
   Share_Chest = true,
   
   AutoConfirm = 0,

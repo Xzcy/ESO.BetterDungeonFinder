@@ -74,7 +74,7 @@ function BAF.MarkChests()
   --Mark
   local List = BAF.savedVariables.ChestList[ZoneId] or {}
   for key, xyz in pairs(List) do
-    table.insert(CurrentMarks, OSI.CreatePositionIcon(xyz[1], xyz[2], xyz[3], "/esoui/art/icons/quest_strosmkai_open_treasure_chest.dds"))
+    table.insert(CurrentMarks, OSI.CreatePositionIcon(xyz[1], xyz[2], xyz[3], BAF.savedVariables.Icon_Chest, BAF.savedVariables.Size_Cheset))
   end
 end
 

@@ -25,7 +25,7 @@ function BAF.D2C(Control, List)
   local TR = Control:GetNamedChild("_TR")
   local BG = Control:GetNamedChild("_BG")
   --Title
-  Title:SetText(List["Name"])
+  Title:SetText(List["Name"]:gsub("%^.*", ""))
   if List["IsTodayU"] then Title:SetColor(0.255, 0.412, 1) else Title:SetColor(1, 1, 1) end
   Title:ClearAnchors()
   if BAF.savedVariables.Window_Left then
