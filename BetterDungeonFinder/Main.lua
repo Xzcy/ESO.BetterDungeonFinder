@@ -198,6 +198,7 @@ function BAF.DungeonInitial()
       ["Style"] = BAF.DLCDungeonInfo[i][12],
       ["TravelIndex"] = BAF.DLCDungeonInfo[i][13],
 		}
+    if BAF.DD[i]["Name"] == "" then BAF.DD[i] = nil end
 	end
   BAF.DungeonUpdate()
 end

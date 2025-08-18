@@ -1,9 +1,9 @@
 ## Title: BetterDungeonFinder
 ## Description: Dungeon Finder Extension.
 ## Author: @MelanAster
-## APIVersion: 101045 101046
-## AddOnVersion: 172
-## Version: 1.72
+## APIVersion: 101046 101047
+## AddOnVersion: 180
+## Version: 1.80
 ## DependsOn: LibAddonMenu-2.0>=38 LibSets>=000709
 ## OptionalDependsOn: LibGroupBroadcast OdySupportIcons
 ## SavedVariables: BetterActivityFinder_Vars

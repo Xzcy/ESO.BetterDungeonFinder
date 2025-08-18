@@ -65,27 +65,28 @@ function BAF.OnDailyU(Stamp)
     8,    --12 Arx Corinium
   }
   
-  --2025.03.10 UTC 15:07
-  local StartTime, StartIndex = 1741619141, {6, 6, 30} 
-  
   local Cycle_3 = {
-    289, 293, --01, 02 Imperial City Prison, Ruins of Mazzatun
-    288, 295, --03, 04 White-Gold Tower, Cradle of Shadows
-    324, 368, --05, 06 Bloodroot Forge, Falkreath Hold
-    420, 418, --07, 08 Fang Lair, Scalecaller Peak
-    426, 428, --09, 10 Moon Hunter Keep, March of Sacrifices
-    435, 433, --11, 12 Depths of Malatar, Frostvault
-    494, 496, --13, 14 Moongrave Fane, Lair of Maarselok
-    503, 505, --15, 16 Icereach, Unhallowed Grave
-    507, 509, --17, 18 Stone Garden, Castle Thorn
-    591, 593, --19, 20 Black Drake Villa, The Cauldron
-    595, 597, --21, 22 Red Petal Bastion, The Dread Cellar
-    599, 601, --23, 24 Coral Aerie, Shipwright's Regret
-    608, 610, --25, 26 Earthen Root Enclave, Graven Deep
-    613, 615, --27, 28 Bal Sunnar, Scrivener's Hall
-    638, 640, --29, 30 Oathsworn Pit, Bedlam Veil
-    855, 857, --31, 32 Exiled Redoubt, Lep Seclusa
+    289,  293,  --01, 02 Imperial City Prison, Ruins of Mazzatun
+    288,  295,  --03, 04 White-Gold Tower, Cradle of Shadows
+    324,  368,  --05, 06 Bloodroot Forge, Falkreath Hold
+    420,  418,  --07, 08 Fang Lair, Scalecaller Peak
+    426,  428,  --09, 10 Moon Hunter Keep, March of Sacrifices
+    435,  433,  --11, 12 Depths of Malatar, Frostvault
+    494,  496,  --13, 14 Moongrave Fane, Lair of Maarselok
+    503,  505,  --15, 16 Icereach, Unhallowed Grave
+    507,  509,  --17, 18 Stone Garden, Castle Thorn
+    591,  593,  --19, 20 Black Drake Villa, The Cauldron
+    595,  597,  --21, 22 Red Petal Bastion, The Dread Cellar
+    599,  601,  --23, 24 Coral Aerie, Shipwright's Regret
+    608,  610,  --25, 26 Earthen Root Enclave, Graven Deep
+    613,  615,  --27, 28 Bal Sunnar, Scrivener's Hall
+    638,  640,  --29, 30 Oathsworn Pit, Bedlam Veil
+    855,  857,  --31, 32 Exiled Redoubt, Lep Seclusa
+    1037, 1039, --33, 34 Naj-Caldeesh, Black Gem Foundry
   }
+  
+  --2025.08.18 UTC 15:03
+  local StartTime, StartIndex = 1755529389, {11, 11, 21}
   
   local NextUpdateTime = Stamp or (GetTimeStamp() + GetTimeUntilNextDailyLoginRewardClaimS())
   local Days = math.floor((NextUpdateTime - StartTime) / (24 * 3600))
@@ -315,13 +316,17 @@ function BAF.OpenCollection(Button)
   if string.find(Name, "UD_") then ZoneID = BAF.UD[tonumber(index)]["zoneId"] end
 
   local Categoryid = LibSets.GetItemSetCollectionCategoryIds(ZoneID)
+  if not Categoryid then
+    d("[BDF] Something Wrong With LibSets")
+    return 
+  end
   local Categorydata = LibSets.GetItemSetCollectionCategoryData(Categoryid[1])
   if Categorydata ~= nil then
     LibSets.OpenItemSetCollectionBookOfCategoryData(Categorydata)
     BAF.ShowWindow()
     return
   end
-  d("BDF: Something Wrong With LibSets")
+  d("[BDF] Something Wrong With LibSets")
 end
 
 --To open AchievementPopup
