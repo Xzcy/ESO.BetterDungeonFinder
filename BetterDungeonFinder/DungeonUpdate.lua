@@ -8,6 +8,7 @@ local function IsInTable(value, tbl)
   end
   return false
 end
+
 --------------------------------
 BAF.OnSale = {}
 --Get Onsale weapon pack
@@ -22,6 +23,7 @@ function BAF.OnSalePack()
     end
   end
 end
+
 --Just for debug
 --/script BetterDungonFinder.PackScan("Arms Pack")
 function BAF.PackScan(String)
@@ -30,6 +32,7 @@ function BAF.PackScan(String)
     if Name ~= "" and string.find(Name, String) then d(i..": "..Name) end
   end
 end
+
 --------------------------------
 --Today undaunted dungeons
 BAF.TodayUndaunted = {} 
@@ -109,6 +112,7 @@ function BAF.OnDailyU(Stamp)
     end
   end
 end
+
 --------------------------------
 --Fill the dungeonList with info
 function BAF.DungeonUpdate()
@@ -299,11 +303,27 @@ function BAF.GearCount(SetIDs)
   if SetIDs == nil then return end
   local GearUnlock = 0
   local GearTotal = 0
+  local GearUnlockS = 0
+  local GearShoulder = 0
   for i = 1, #SetIDs do
-    GearTotal = GearTotal + GetNumItemSetCollectionPieces(SetIDs[i])
-    GearUnlock = GearUnlock + GetNumItemSetCollectionSlotsUnlocked(SetIDs[i])
+    local total = GetNumItemSetCollectionPieces(SetIDs[i])
+    local unlock = GetNumItemSetCollectionSlotsUnlocked(SetIDs[i])
+    GearTotal = GearTotal + total
+    GearUnlock = GearUnlock + unlock
+    if total == 6 then
+      GearShoulder = GearShoulder + 3
+      for j = 4, 6 do
+        if IsItemSetCollectionPieceUnlocked(GetItemSetCollectionPieceInfo(SetIDs[i], j)) then
+          GearUnlockS = GearUnlockS + 1
+        end
+      end
+    end
   end
-  return {GearUnlock, GearTotal}
+  if BAF.savedVariables.Hide_Shoulder then
+    return {GearUnlock - GearUnlockS, GearTotal - GearShoulder}
+  else
+    return {GearUnlock, GearTotal}
+  end
 end
 
 --Done with LibSets to open stickbook

@@ -2,8 +2,8 @@
 ## Description: Dungeon Finder Extension.
 ## Author: @MelanAster
 ## APIVersion: 101046 101047
-## AddOnVersion: 180
-## Version: 1.80
+## AddOnVersion: 190
+## Version: 1.90
 ## DependsOn: LibAddonMenu-2.0>=38 LibSets>=000709
 ## OptionalDependsOn: LibGroupBroadcast OdySupportIcons
 ## SavedVariables: BetterActivityFinder_Vars
@@ -23,6 +23,8 @@ ChestMarker.lua
 
 Finder.lua
 FinderUpdate.lua
+
+Coffer.lua
 
 Finder.xml
 bindings.xml

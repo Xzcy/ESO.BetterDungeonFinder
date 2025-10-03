@@ -21,22 +21,23 @@ BAF.XML_Default = {
   
   Pure_Black = false,
   Auto_Switch = true,
+  AutoConfirm = 0,
+  DoubleCQTE = true,
   
   Mark_Chest = true,
   Icon_Chest = "/esoui/art/icons/quest_strosmkai_open_treasure_chest.dds",
   Size_Cheset = 128,
   Share_Chest = true,
-  
-  AutoConfirm = 0,
+
   AutoUDQ = true,
-  DoubleCQTE = true,
-  
   UDQDelay = 300,
-  
+  Hide_Shoulder = false,
+  CofferHelper = true,
+
   BGSound = true,
   BGSoundC = false,
   AlertSound = 14,
-  
+
   AlphaLow = 0.2,
   AlphaHigh = 0.9,
   

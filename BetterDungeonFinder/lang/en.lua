@@ -56,19 +56,22 @@ BAFLang_SI = {
   BUTTON_BG_Tooltip = "(LMB) 4v4   (RMB) 8v8",
   
   DIALOG_TITLE = "[BDF] Save Dungeon List",
-  DIALOG_TEXT = "Enter a new name for the list",
+  DIALOG_TEXT = "Enter a New Name for the List",
   
-  SETTING_Finder_Header = "Dungeon Finder",
   SETTING_Finder_Lock = "Lock Dungeon Finder",
-  SETTING_Finder_Lock_Info = "Lock the position of Dungeon Finder",
+  SETTING_Finder_Lock_Info = "Lock the Position of Dungeon Finder",
   SETTING_Finder_Pure = "Pure Black Background",
   SETTING_Finder_Pure_Info = "Set Background of Finder to Pure Black",
   SETTING_Finder_Title = "Left Aligned Dungeon Titles",
-  SETTING_Finder_Title_Info = "Defaults to centered display",
+  SETTING_Finder_Title_Info = "Defaults to Centered display",
   SETTING_Finder_TitleV = "Position Adjustment for Dungeon Titles",
   SETTING_Finder_Alpha_Low = "Dungeon Image Opacity (unselected)",
   SETTING_Finder_Alpha_High = "Dungeon Image Opacity (selected)",
   SETTING_Finder_Alpha_Tooltip = "No - 0 ~ 1 - Full",
+  SETTING_Coffer_Helper = "Undaunted Coffer Helper",
+  SETTING_Coffer_Helper_Tooltip = "Add the Collection Status of Shoulders to the Coffer Information in Shop",
+  SETTING_Hide_Shoudler_Count = "Hide the Collection of Monster Set Shoulders",
+  SETTING_Hide_Shoudler_Count_Tooltip = "When Enabled, Equipment Collection Statistics will not Include Monster Set Shoulders",
   
   SETTING_Trigger_Header = "Triggle Button",
   SETTING_Trigger_Lock = "Lock Triggle Button",
@@ -89,14 +92,15 @@ BAFLang_SI = {
   SETTING_Other_MarkChests = "Mark possible locations of chests in dungeons",
   SETTING_Other_MarkChests_Info = "Record and mark the locations of the chests you have opened in dungeons (Require OdySupportIcons)",
   SETTING_Other_ShareChests = "Share Possible Locations of Dungeon Chests",
-  SETTING_Other_ShareChests_Info = "When the first time out of combat in dungeons, attempt to share the possible location of that dungeon's chests with your members \r\nBoth sides need BDF, OdySupportIcons and LibGroupBroadcast",
+  SETTING_Other_ShareChests_Info = "When the First Time out of Combat in Dungeon, Attempt to Share the Possible Location of Chests in this Dungeon with Your Members \r\nBoth Sides Need BDF, OdySupportIcons and LibGroupBroadcast",
   
   SETTING_Other_AutoConfirm = "Auto-Confirmation with x Seconds Remaining",
   SETTING_Other_BGSound = "Temporary Permission for Background Audio",
-  SETTING_Other_BGSound_Info = "Temporarily allow the game to play audio in the background during the countdown to ready confirmation",
+  SETTING_Other_BGSound_Info = "Temporarily Allow the Game to Play Audio in the Background during the Countdown to Ready Confirmation",
   
   SETTING_Sort_Header = "Customized Dungeon Sorting",
-  SETTING_Sort_AZ_Info = "Alphabetical, same order as official",
+  SETTING_Sort_Header_Des = "Change the Relative Positions of Dungeons in the Interface. By default, They are Arranged by Unlock Level or Release Date",
+  SETTING_Sort_AZ_Info = "Alphabetical, Same Order as Official",
   
   KEYBIND = "Open/Close BDF",
   
@@ -105,7 +109,7 @@ BAFLang_SI = {
   WARNING_Difficulty = "[BDF] Unable to Change Difficulty Now.",
   WARNING_ReloadUI = "Need to reload the UI.",
   
-  MESSAGE_AddChestMark = "[BDF] Added a refresh point of chest",
-  MESSAGE_ReceivedChest = "[BDF] Received <<1>> refresh points of chest from <<2>>"
+  MESSAGE_AddChestMark = "[BDF] Added a Refresh Point of Chest",
+  MESSAGE_ReceivedChest = "[BDF] Received <<1>> Refresh Points of Chest from <<2>>"
 }
 --Waring: Every line in BAFLang_SI should be ended with ,

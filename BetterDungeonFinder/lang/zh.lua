@@ -58,7 +58,6 @@ BAFLang_SI = {
   DIALOG_TITLE = "[BDF] 保存地下城列表",
   DIALOG_TEXT = "为该列表输入一个名称",
   
-  SETTING_Finder_Header = "排本UI",
   SETTING_Finder_Lock = "锁定排本UI",
   SETTING_Finder_Lock_Info = "固定排本UI的当前位置",
   SETTING_Finder_Pure = "纯黑界面背景",
@@ -69,7 +68,11 @@ BAFLang_SI = {
   SETTING_Finder_Alpha_Low = "地下城背景图透明度（未选时）",
   SETTING_Finder_Alpha_High = "地下城背景图透明度（选择时）",
   SETTING_Finder_Alpha_Tooltip = "关闭 - 0 ~ 1 - 不透明",
-  
+  SETTING_Coffer_Helper = "怪物肩宝箱助手",
+  SETTING_Coffer_Helper_Tooltip = "为商店的宝箱中标注对应怪物肩的收集情况",
+  SETTING_Hide_Shoudler_Count = "隐藏怪物肩收集",
+  SETTING_Hide_Shoudler_Count_Tooltip = "启用后，BDF界面中的装备收集情况将不再统计怪物肩",
+
   SETTING_Trigger_Header = "排本按钮",
   SETTING_Trigger_Lock = "锁定排本按钮",
   SETTING_Trigger_Lock_Info = "固定排本按钮的当前位置",
@@ -96,6 +99,7 @@ BAFLang_SI = {
   SETTING_Other_BGSound_Info = "在准备倒计时期间，临时启用后台音频播放",
   
   SETTING_Sort_Header = "自定义地下城排序",
+  SETTING_Sort_Header_Des = "改变BDF界面中各地下城的相对位置，默认按照解锁等级或发布时间排列",
   SETTING_Sort_AZ_Info = "按字母排序，与官方顺序相同",
   
   KEYBIND = "开关UI界面",

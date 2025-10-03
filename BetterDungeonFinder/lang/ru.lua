@@ -58,7 +58,6 @@ BAFLang_SI = {
   DIALOG_TITLE = "[BDF] Сохранить список Подземелий",
   DIALOG_TEXT = "Введите новое имя для списка",
   
-  SETTING_Finder_Header = "Поиск подземелий",
   SETTING_Finder_Lock = "Заблокировать",
   SETTING_Finder_Lock_Info = "Заблокировать перемещение окна BDF",
   SETTING_Finder_Pure = "Черный фон",
@@ -69,6 +68,10 @@ BAFLang_SI = {
   SETTING_Finder_Alpha_Low = "Фон не активных",
   SETTING_Finder_Alpha_High = "Фон активных",
   SETTING_Finder_Alpha_Tooltip = "No - 0 ~ 1 - Full",
+  SETTING_Coffer_Helper = "Undaunted Coffer Helper", --New
+  SETTING_Coffer_Helper_Tooltip = "Add the Collection Status of Shoulders to the Coffer Information in Shop", --New
+  SETTING_Hide_Shoudler_Count = "Hide the Collection of Monster Set Shoulders", --New
+  SETTING_Hide_Shoudler_Count_Tooltip = "When Enabled, Equipment Collection Statistics will not Include Monster Set Shoulders", --New
   
   SETTING_Trigger_Header = "Иконка аддона",
   SETTING_Trigger_Lock = "Заблокировать",
@@ -96,6 +99,7 @@ BAFLang_SI = {
   SETTING_Other_BGSound_Info = "Временное разрешение фонового звукового оповещения, пока идет отсчет подтверждения",
   
   SETTING_Sort_Header = "Настройка сортировки",
+  SETTING_Sort_Header_Des = "Change the Relative Positions of Dungeons in the Interface. By default, They are Arranged by Unlock Level or Release Date", --New
   SETTING_Sort_AZ_Info = "Алфавитное, так-же как оригинал",
   
   KEYBIND = "Open/Close BDF",
